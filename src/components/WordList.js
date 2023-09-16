@@ -19,7 +19,6 @@ const WordList = ({title, category}) => {
       setError(data)
   }
 
-  
 
   return (
     <div id="word-list-container">

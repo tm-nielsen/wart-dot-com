@@ -7,16 +7,33 @@ const useFetch = () => {
 
   const fetchData = async (address, handleResponse, requestOptions) => {
     try {
-      const response = await fetch(`${serverUrl}/${address}`, requestOptions)
-      const data = await response.json()
-      handleResponse(data)
+      let url = `${serverUrl}/${address}`
+      const response = await fetch(url, requestOptions)
+      const contentType = response.headers.get('content-type')
+
+      if (contentType?.includes('application/json'))
+      {
+        const dataObject = await response.json()
+        handleResponse(dataObject)
+      } else
+      {
+        const dataString = await response.text()
+
+        try {
+          const dataObject = JSON.parse(dataString)
+          handleResponse(dataObject)
+        } catch(error)
+        {
+          handleResponse(dataString)
+        }
+      }
     }
     catch(error) {
       let errorString = JSON.stringify(error)
-      if (errorString !== '{}')
-        setError(errorString)
-      else
-        setError('There was an issue fetching from the server')
+      if (errorString === '{}')
+        errorString = 'There was an issue fetching from the server'
+      console.error(errorString)
+      setError(errorString)
     }
   }
 
