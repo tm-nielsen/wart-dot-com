@@ -1,0 +1,35 @@
+a {
+  display: block;
+  flex: 1;
+  padding: 0.3em;
+  margin: 0.5em;
+
+  color: var(--main-col);
+  font-family: clubFont;
+  font-size: 2em;
+  text-decoration: none;
+  text-align: center;
+
+  transform: scale(1);
+  transition: all 0.25s ease-out;
+}
+
+a:hover {
+  border-color: var(--main-col);
+  color: var(--accent-col);
+  transform: scale(1.05);
+  box-shadow: 0.1em 0.1em 0.1em black;
+  transition:all 0.05s ease-in;
+}
+
+#club-link {
+  display: block;
+  max-width: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#club-icon {
+  display: block;
+  width: 1.5em;
+}
