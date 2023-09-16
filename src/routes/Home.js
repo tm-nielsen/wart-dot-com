@@ -3,6 +3,8 @@ import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
 import Footer from '../components/Footer'
 
+const serverUrl = 'http://localhost:3001'
+
 const Home = () => {
   return (
     <>
@@ -11,9 +13,9 @@ const Home = () => {
       <div className="spacer"/>
       <SuggestionBox/>
       <div className="spacer"/>
-      <WordList title="Prompt Pool" category="current" />
-      <WordList title="Past Prompts" category="past" />
-      <WordList title="Pending Approval" category="pending" />
+      <WordList title="Prompt Pool" category="current" serverUrl={serverUrl} />
+      <WordList title="Past Prompts" category="past" serverUrl={serverUrl} />
+      <WordList title="Pending Approval" category="pending" serverUrl={serverUrl} />
       <div className="spacer"/>
       <Footer/>
     </>
