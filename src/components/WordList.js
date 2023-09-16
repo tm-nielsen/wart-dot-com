@@ -1,21 +1,16 @@
 import React, {useState, useEffect} from 'react'
+import useFetch from '../hooks/useFetch'
 import '../styles/wordlist.css'
 
-const WordList = ({title, category, serverUrl}) => {
+const WordList = ({title, category}) => {
   var [words, setWords] = useState([])
-  var [error, setError] = useState('')
+  var [fetchData, error, setError] = useFetch()
 
   useEffect(() => {
-    fetch(`${serverUrl}/category/${category}`)
-    .then(response => response.json())
-    .then(handleResponse)
-    .catch(error => {
-      setError('There was an issue fetching from the server')
-    })
+    fetchData(`category/${category}`, handleResponse)
   }, [])
 
-  let handleResponse = (data) => {
-    console.log(data)
+  const handleResponse = (data) => {
     if(Array.isArray(data)) {
       setWords(data)
       setError('')
@@ -24,12 +19,14 @@ const WordList = ({title, category, serverUrl}) => {
       setError(data)
   }
 
+  
+
   return (
     <div id="word-list-container">
       <h3>{title}:</h3>
       <ol id="word-list">
-        {words.map((word, index) => <p key={index} id="prompt" className='acc-faded'>{word}</p>)}
-        {error? <p className='acc'>{error}</p>:null}
+        {error? <p className='acc'>{error}</p>
+        :words.map((word, index) => <p key={index} id="prompt" className='acc-faded'>{word}</p>)}
       </ol>
     </div>
   )
