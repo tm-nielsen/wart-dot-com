@@ -1,4 +1,5 @@
 import React from 'react'
+import WordList from '../components/WordList'
 import Footer from '../components/Footer'
 
 const Home = () => {
@@ -10,18 +11,11 @@ const Home = () => {
         <label htmlFor="prompt">Suggest a Prompt: </label>
         <input type="text" name="prompt" id="prompt" />
       </form>
-      <h3>Prompt Pool:</h3>
-      <ol>
-        {Array.from({length: 20}, (x, i) => i).map((i) => <p>word {i}</p>)}
-      </ol>
-      <h3>Past Prompts:</h3>
-      <ol>
-        {Array.from({length: 20}, (x, i) => i).map((i) => <p>word {i}</p>)}
-      </ol>
-      <h3>Suggestions Pending Approval</h3>
-      <ol>
-        {Array.from({length: 20}, (x, i) => i).map((i) => <p>word {i}</p>)}
-      </ol>
+      
+      <WordList title="Prompt Pool" category="current" />
+      <WordList title="Past Prompts" category="past" />
+      <WordList title="Suggestions Pending Approval" category="pending" />
+      
       <Footer/>
     </>
   )
