@@ -4,33 +4,44 @@ import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
 import Footer from '../components/Footer'
 
-const serverUrl = 'http://localhost:3001'
 
 const Home = () => {
-  const [currentPrompt, setCurrentPrompt] = useState('')
   const [fetchData, error, setError] = useFetch()
+  const [activePrompt, setActivePrompt] = useState('')
+  const [currentWords, setCurrentWords] = useState([])
+  const [pastWords, setPastWords] = useState([])
+  const [pendingWords, setPendingWords] = useState([])
+  const [testWords, setTestWords] = useState([])
 
 
   useEffect(() => {
-    fetchData('active', handleResponse)
+    fetchData('active', setActivePrompt)
+    fetchData('category/current', setCurrentWords)
+    fetchData('category/past', setPastWords)
+    fetchData('category/pending', setPendingWords)
+    fetchData('category/test', setTestWords)
   }, [])
 
-  const handleResponse = (data) => {
-    setCurrentPrompt(data)
+  const updateWords = () => {
+    console.log("update active word")
+    // fetchData('active', setActivePrompt)
+    // fetchData('category/current', setCurrentWords)
+    // fetchData('category/past', setPastWords)
+    // fetchData('category/pending', setPendingWords)
   }
 
 
   return (
     <>
       <h1 className="acc">This Week's WArt word is:</h1>
-      <p id="current-prompt">{currentPrompt}</p>
+      <p id="current-prompt">{activePrompt}</p>
       <div className="spacer"/>
-      <SuggestionBox/>
+      <SuggestionBox updateWords={updateWords}/>
       <div className="spacer"/>
-      <WordList title="Prompt Pool" category="current" serverUrl={serverUrl} />
-      <WordList title="Past Prompts" category="past" serverUrl={serverUrl} />
-      <WordList title="Pending Approval" category="pending" serverUrl={serverUrl} />
-      <WordList title="Test" category="nothing" serverUrl={serverUrl} />
+      <WordList title="Prompt Pool" content={currentWords} />
+      <WordList title="Past Prompts" content={pastWords} />
+      <WordList title="Pending Approval" content={pendingWords} />
+      <WordList title="Test" content={testWords} />
       <div className="spacer"/>
       <Footer/>
     </>

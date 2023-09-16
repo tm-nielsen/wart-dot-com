@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const SuggestionBox = () => {
+const SuggestionBox = ({updateWords}) => {
   const [suggestion, setSuggestion] = useState('')
   const [error, setError] = useState('')
   const [submittedPrompt, setSubmittedPrompt] = useState('')
@@ -33,6 +33,7 @@ const SuggestionBox = () => {
 
   var submitPrompt = (prompt) => {
     console.log(prompt)
+    updateWords()
   }
 
   return (
