@@ -10,6 +10,11 @@ a {
   text-decoration: none;
   text-align: center;
 
+  border-radius: 1em;
+  border-style: solid;
+  border-width: 0.5rem;
+  border-color: var(--accent-col);
+
   transform: scale(1);
   transition: all 0.25s ease-out;
 }
@@ -18,7 +23,7 @@ a:hover {
   border-color: var(--main-col);
   color: var(--accent-col);
   transform: scale(1.05);
-  box-shadow: 0.1em 0.1em 0.1em black;
+  box-shadow: 0.25rem 0.25rem 1.25rem black;
   transition:all 0.05s ease-in;
 }
 

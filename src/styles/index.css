@@ -3,15 +3,15 @@ body{
   --main-col: #ff5e5b;
   --accent-col: #00cecb;
 
-  --main-col-faded: #ff5f5c55;
-  --accent-col-faded: #00cecb55;
+  --main-col-faded: #ff5f5ca5;
+  --accent-col-faded: #00cecba5;
 
   background-color: var(--main-bg-col);
   color: var(--main-col);
 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-kerning:none;
-  font-size: min(2.0vw, 32px);
+  font-size: min(2.0vw, 16px);
 }
 
 @font-face {
@@ -39,7 +39,7 @@ h1 {
   /* color: var(--main-col); */
   /* font-family: clubFont; */
   font-size: 2.5em;
-  text-shadow: 0.2em 0.2em 0.5em black;
+  text-shadow: 0.5rem 0.5rem 1rem black;
 }
 
 h2 {
@@ -51,14 +51,21 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: max(1.5em, 16px);
   margin: 0;
 }
 
 ol {
   display: flex;
-  flex-wrap: wrap;
   text-align: center;
+  justify-content: space-around;
+
+  margin: 0;
+  padding: 1em;
+}
+
+p {
+  font-size: max(1em, 10px);
 }
 
 
@@ -84,15 +91,8 @@ ol {
   align-items: center;
 }
 
-.acc-border {
-  border-radius: 1em;
-  border-style: solid;
-  border-width: 0.2em;
-  border-color: var(--accent-col);
-}
-
 .shadow {
-  box-shadow: 0.2em 0.2em 0.5em black;
+  box-shadow: 0.5rem 0.5rem 1rem black;
 }
 
 .flat {
@@ -108,5 +108,5 @@ ol {
   font-family: clubFont;
   font-size: 5em;
   font-weight: bold;
-  text-shadow: 0.2em 0.2em 0.5em black;
+  text-shadow: 0.5rem 0.5rem 1rem black;
 }
