@@ -1,0 +1,18 @@
+#login-root {
+  display: flex;
+  flex: 1;
+  margin-top: 25vh;
+}
+
+#login-form {
+  display: flex;
+  margin-bottom: 2em;
+}
+
+#password-field {
+  flex: 1;
+  padding: 0.5em;
+
+  font-size: 3em;
+  text-align: center;
+}
