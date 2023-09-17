@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const serverUrl = 'http://localhost:3001'
-
-const useFetch = () => {
+const useFetch = (serverUrl) => {
   const [error, setError] = useState('')
 
   const fetchData = async (address, handleResponse, requestOptions) => {
