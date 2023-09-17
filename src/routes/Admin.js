@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
+
+import AdminNavPage from '../components/admin/AdminNavPage'
+import AdminPage from '../components/admin/AdminPage'
 import Login from '../components/admin/Login'
 
 
@@ -28,45 +31,27 @@ const Admin = ({serverUrl}) => {
   // confirm selection of new prompt
   // edit: insert/delete directly
 
+  const returnToMainPage = () => setCurrentPage(0)
+
   let pageContent
   if (authenticated) {
     switch(currentPage){
       case 0:
-        pageContent = (
-          <>
-            <button onClick={() => setCurrentPage(1)}>Approve Submissions</button>
-            <button onClick={() => setCurrentPage(2)}>Select New Prompt</button>
-            <button onClick={() => setCurrentPage(3)}>Edit</button>
-          </>
-        )
+        pageContent = <AdminNavPage setPage={setCurrentPage} />
         break
 
       case 1:
-        pageContent = (
-          <>
-            <button onClick={() => setCurrentPage(0)}>Back</button>
-            <h1>Approve Pending Submissions</h1>
-          </>
-        )
+        pageContent = <AdminPage title='Approve Pending Submissions' back={returnToMainPage}/>
         break
 
       case 2:
-        pageContent = (
-          <>
-            <button onClick={() => setCurrentPage(0)}>Back</button>
-            <h1>Select a New Active Prompt</h1>
+        pageContent = <AdminPage title='Select a New Active Prompt' back={returnToMainPage}>
             <button onClick={() => console.log('selecting new prompt')}>Confirm</button>
-          </>
-        )
+          </AdminPage>
         break
 
       case 3:
-        pageContent = (
-          <>
-            <button onClick={() => setCurrentPage(0)}>Back</button>
-            <h1>Edit Prompt Lists</h1>
-          </>
-        )
+        pageContent = <AdminPage title='Edit Prompt Lists' back={returnToMainPage}/>
         break
     }
   }
