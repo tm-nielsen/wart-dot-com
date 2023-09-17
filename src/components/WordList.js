@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/wordlist.css'
 
 const WordList = ({title, content}) => {
+  if (Array.isArray(content))
   return (
     <div id="word-list-container">
       <h3>{title}:</h3>
