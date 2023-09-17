@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import useFetch from '../hooks/useFetch'
 
 import AdminPageNavigator from '../components/admin/AdminPageNavigator'
@@ -10,7 +10,12 @@ const Admin = ({serverUrl}) => {
   const [password, setPassword] = useState('')
   const [showWrong, setShowWrong] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
+  const [pendingWords, setPendingWords] = useState([])
 
+
+  useEffect(() => {
+    get('category/pending', setPendingWords)
+  }, [])
 
   const onLoginSubmit = (value) => {
     setPassword(value)
@@ -23,11 +28,16 @@ const Admin = ({serverUrl}) => {
 
 
   const commitApprovedPrompts = (promptList) => {
+    console.log('committng approved prompts', promptList)
+    console.log(pendingWords)
 
+    // get('category/pending', setPendingWords)
   }
 
   const commitRejectedPrompts = (promptList) => {
+    console.log('committing rejected prompts', promptList)
 
+    // get('category/pending', setPendingWords)
   }
 
   const confirmSelectionOfNewPrompt = () => {
@@ -35,11 +45,11 @@ const Admin = ({serverUrl}) => {
   }
 
   const insertPrompt = (prompt, category) => {
-
+    console.log('inserting prompt', prompt, 'into category', category)
   }
 
   const removePrompt = (prompt) => {
-
+    console.log('removing', prompt, 'from all lists')
   }
 
 
@@ -47,7 +57,7 @@ const Admin = ({serverUrl}) => {
     <>
       {authenticated?
       <AdminPageNavigator
-        commitApproved={commitApprovedPrompts} commitRejected={commitRejectedPrompts}
+        pendingPrompts={pendingWords} commitApproved={commitApprovedPrompts} commitRejected={commitRejectedPrompts}
         confirmSelect={confirmSelectionOfNewPrompt}
         insertPrompt={insertPrompt} removePrompt={removePrompt}
       />
