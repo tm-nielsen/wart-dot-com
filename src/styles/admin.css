@@ -1,0 +1,119 @@
+label {
+  flex: 1;
+  max-width: 50%;
+
+  overflow: auto;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+button {
+  padding: 0.5em;
+  margin: 0.5em 1em;
+
+  background-color: transparent;
+  border-radius: 0.5em;
+  border-width: 0.4rem;
+  border-color: var(--main-col);
+  border-style: solid;
+
+  font-size: 3em;
+  font-weight: bold;
+  color: var(--accent-col);
+
+  box-shadow: 0.5rem 0.5rem 1rem black;
+}
+button:active {
+  background-color: black;
+  transform: scale(0.9);
+}
+button:disabled {
+  background-color: transparent;
+  transform: scale(1);
+  
+  color: var(--accent-col-faded);
+  border-color: var(--main-col-faded);
+  box-shadow: none;
+}
+
+input[type='radio'] {
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  
+  border-radius: 50%;
+  border-width: 0.2rem;
+  border-style: solid;
+  border-color: var(--main-col-faded);
+}
+input[type='radio']:checked {
+  width: 2em;
+  height: 2em;
+  border-width: 0.4rem;
+  border-color: var(--accent-col);
+}
+
+
+.input-margin {
+  padding: 0.5rem;
+  margin: 0.5rem 0.5rem 3rem;
+}
+
+.text-field {
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 3em;
+}
+
+.radio-label {
+  text-shadow: 0.5rem 0.5rem 1rem black;
+}
+
+
+#login-root {
+  display: flex;
+  flex: 1;
+  margin-top: 25vh;
+}
+
+#login-form {
+  display: flex;
+  margin-bottom: 2em;
+}
+
+
+#admin-page {
+  margin-top: 5em;
+  margin-bottom: 10em;
+}
+
+
+
+#prompt-approval-item {
+  flex-direction: row;
+  width: 80vw;
+  margin: 0.5em auto;
+}
+
+#approval-button-container {
+  width: 50%;
+  flex-direction: row;
+}
+
+.approval-button {
+  border-width: 0.2rem;
+  border-color: var(--accent-col);
+
+  font-size: 1.5em;
+}
+
+#approve-button {
+  color: var(--accent-col);
+  border-color: var(--accent-col);
+}
+
+#reject-button {
+  color: var(--main-col);
+  border-color: var(--main-col);
+}

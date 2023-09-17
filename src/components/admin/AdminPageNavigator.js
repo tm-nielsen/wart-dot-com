@@ -32,7 +32,7 @@ const AdminPageNavigator = ({pendingPrompts, commitApproved, commitRejected, con
 
   return (
     <>
-      <div className="admin-page">
+      <div id="admin-page">
         {pageContent}
       </div>
       <div className="flex-row">

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import useFetch from '../hooks/useFetch'
+import "../styles/admin.css"
 
 import AdminPageNavigator from '../components/admin/AdminPageNavigator'
 import Login from '../components/admin/Login'

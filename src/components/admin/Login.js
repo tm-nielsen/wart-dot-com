@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
-import "../../styles/login.css"
 
 const Login = ({onSubmit, showWrong}) => {
   const [password, setPassword] = useState('')
@@ -21,7 +20,7 @@ const Login = ({onSubmit, showWrong}) => {
     <div id="login-root">
       <h1>Enter Password</h1>
       <form id='login-form' onSubmit={handleSubmit}>
-        <input id='password-field' className='shadow' placeholder='enter password'
+        <input className='text-field shadow' placeholder='enter password'
           value={password} onChange={handleChange}/>
       </form>
       {showWrong? <h1>WRONG</h1>: null}
