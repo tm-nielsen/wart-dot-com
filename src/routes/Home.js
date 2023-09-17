@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 
 
 const Home = ({serverUrl}) => {
-  const {get} = useFetch(serverUrl)
+  const {get, post} = useFetch(serverUrl)
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
@@ -25,8 +25,11 @@ const Home = ({serverUrl}) => {
   const submitPrompt = (prompt) => {
     console.log('submitting prompt: ', prompt)
     
-    // get('active', setActivePrompt)
-    // get('category/pending', setPendingWords)
+    post('', {prompt}, (response) => {
+      console.log(response)
+
+      get('category/pending', setPendingWords)
+    })
   }
 
 
@@ -37,9 +40,9 @@ const Home = ({serverUrl}) => {
       <div className="spacer"/>
       <SuggestionBox onSubmit={submitPrompt} />
       <div className="spacer"/>
+      <WordList title="Pending Approval" content={pendingWords} />
       <WordList title="Prompt Pool" content={currentWords} />
       <WordList title="Past Prompts" content={pastWords} />
-      <WordList title="Pending Approval" content={pendingWords} />
       <WordList title="Test" content={testWords} />
       <div className="spacer"/>
       <Footer/>
