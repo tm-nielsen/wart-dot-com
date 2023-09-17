@@ -6,27 +6,37 @@ import Login from '../components/admin/Login'
 const Admin = ({serverUrl}) => {
   const {get, post, patch} = useFetch(serverUrl)
   const [password, setPassword] = useState('')
-  const [showWrongPasswordMessage, setShowWrongPasswordMessage] = useState(false)
+  const [showWrong, setShowWrong] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
 
   const onLoginSubmit = (value) => {
     setPassword(value)
     get(`authenticate/${value}`, (response) => {
       setAuthenticated(response === true)
-      setShowWrongPasswordMessage(response !== true)
-      setTimeout(() => setShowWrongPasswordMessage(false), 2000)
+      setShowWrong(response !== true)
+      setTimeout(() => setShowWrong(false), 2000)
     })
   }
   
+  // primary (each own page)
+  // select new prompt
+  // approve/reject pending
+
+  // secondary (all one page)
+  // insert prompt
+  // remove prompt
+
+  let pageContent
+  if (authenticated) {
+    pageContent = <div>Admin</div>
+  }
+  else {
+    pageContent = <Login onSubmit={onLoginSubmit} showWrong={showWrong} />
+  }
   
   return (
     <>
-      {authenticated?
-        <div>Admin</div>
-      :
-        <Login onSubmit={onLoginSubmit} />
-      }
-      {showWrongPasswordMessage? <h1>WRONG</h1>: null}
+      {pageContent}
       <Link to='/'>Back</Link>
     </>
   )

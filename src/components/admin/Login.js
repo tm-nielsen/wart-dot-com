@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import "../../styles/login.css"
 
-const Login = ({onSubmit}) => {
+const Login = ({onSubmit, showWrong}) => {
   const [password, setPassword] = useState('')
 
   const handleChange = (event) => {
@@ -23,6 +23,7 @@ const Login = ({onSubmit}) => {
         <input id='password-field' className='shadow' placeholder='enter password'
           value={password} onChange={handleChange}/>
       </form>
+      {showWrong? <h1>WRONG</h1>: null}
     </div>
   )
 }
