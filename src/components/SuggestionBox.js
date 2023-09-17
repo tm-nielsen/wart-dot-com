@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const SuggestionBox = ({updateWords}) => {
+const SuggestionBox = ({onSubmit}) => {
   const [suggestion, setSuggestion] = useState('')
   const [error, setError] = useState('')
   const [submittedPrompt, setSubmittedPrompt] = useState('')
@@ -13,27 +13,24 @@ const SuggestionBox = ({updateWords}) => {
   var handleSubmit = (event) => {
     event.preventDefault()
 
-    if (suggestionIsValid()) {
-      submitPrompt(suggestion)
+    let trimmedSuggestion = suggestion.trim()
+
+    if (promptIsValid(trimmedSuggestion)) {
+      onSubmit(trimmedSuggestion)
       setError('')
-      setSubmittedPrompt(suggestion)
+      setSubmittedPrompt(trimmedSuggestion)
       setTimeout(() => setSubmittedPrompt(''), 3000)
     }
 
     setSuggestion('')
   }
 
-  var suggestionIsValid = () => {
-    if (!suggestion) {
+  var promptIsValid = (prompt) => {
+    if (!prompt) {
       setError('no prompt')
       return false
     }
     return true
-  }
-
-  var submitPrompt = (prompt) => {
-    console.log(prompt)
-    updateWords()
   }
 
   return (
