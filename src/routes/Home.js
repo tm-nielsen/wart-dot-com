@@ -53,12 +53,12 @@ const Home = ({serverUrl}) => {
     <>
       <Header/>
       <div className="spacer"/>
-      <h1 className="acc">This Week's WArt word is:</h1>
+      <h1 className="acc">This Week's WArt Word is:</h1>
       <p id="current-prompt">{activePrompt}</p>
       <div className="spacer"/>
       <SuggestionBox onSubmit={submitPrompt} validatePrompt={validatePrompt}/>
       <div className="spacer"/>
-      <WordList title="Pending Approval" content={pendingWords} />
+      <WordList title="Suggestions Pending Approval" content={pendingWords} />
       <WordList title="Prompt Pool" content={currentWords} />
       <WordList title="Past Prompts" content={pastWords} />
       <div className="spacer"/>

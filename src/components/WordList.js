@@ -5,7 +5,7 @@ const WordList = ({title, content}) => {
   if (Array.isArray(content))
   return (
     <div id="word-list-container">
-      <h3>{title}:</h3>
+      <h2>{title}:</h2>
       <ol id="word-list">
         {
           Array.isArray(content)? 

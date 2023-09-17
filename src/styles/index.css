@@ -43,14 +43,6 @@ h1 {
 }
 
 h2 {
-  margin: 10vw 2vw 0 0;
-  text-align: center;
-  /* color: var(--main-col); */
-  /* font-family: clubFont; */
-  font-size: 3em;
-}
-
-h3 {
   font-size: max(1.5em, 16px);
   margin: 0;
 }
