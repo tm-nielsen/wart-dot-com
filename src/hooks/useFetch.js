@@ -12,6 +12,10 @@ const useFetch = (serverUrl) => {
     wrapFetch(address, handleResponse, getRequestOptions('PATCH', requestBody))
   }
 
+  const fetchDelete = async(address, requestBody, handleResponse) => {
+    wrapFetch(address, handleResponse, getRequestOptions('DELETE', requestBody))
+  }
+
   const getRequestOptions = (methodName, requestBody) => {
     return {
       method: methodName,
@@ -46,7 +50,7 @@ const useFetch = (serverUrl) => {
     }
   }
 
-  return {get, post, patch}
+  return {get, post, patch, fetchDelete}
 }
 
 export default useFetch

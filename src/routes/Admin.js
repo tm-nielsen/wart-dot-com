@@ -7,7 +7,7 @@ import Login from '../components/admin/Login'
 
 
 const Admin = ({serverUrl}) => {
-  const {get, post, patch} = useFetch(serverUrl)
+  const {get, post, patch, fetchDelete} = useFetch(serverUrl)
   const [password, setPassword] = useState('')
   const [showWrong, setShowWrong] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
@@ -28,29 +28,37 @@ const Admin = ({serverUrl}) => {
   }
 
 
-  const commitApprovedPrompts = (promptList) => {
-    console.log('committng approved prompts', promptList)
-    console.log(pendingWords)
+  const commitApprovedPrompts = (approvedPrompts) => {
+    console.log('committng approved prompts', approvedPrompts)
+    patch('accept', {password, approvedPrompts}, logResponse)
 
-    // get('category/pending', setPendingWords)
+    get('category/pending', setPendingWords)
   }
 
-  const commitRejectedPrompts = (promptList) => {
-    console.log('committing rejected prompts', promptList)
+  const commitRejectedPrompts = (rejectedPrompts) => {
+    console.log('committing rejected prompts', rejectedPrompts)
+    patch('reject', {password, rejectedPrompts}, logResponse)
 
-    // get('category/pending', setPendingWords)
+    get('category/pending', setPendingWords)
   }
 
   const confirmSelectionOfNewPrompt = () => {
     console.log('selection of new active prompt confirmed')
+    patch('select', {password}, logResponse)
   }
 
   const insertPrompt = (prompt, category) => {
     console.log('inserting prompt', prompt, 'into category', category)
+    post('insert', {password, prompt, category}, logResponse)
   }
 
   const removePrompt = (prompt) => {
     console.log('removing', prompt, 'from all lists')
+    fetchDelete('', {password, prompt}, logResponse)
+  }
+
+  const logResponse = (response) => {
+    console.log(response)
   }
 
 
