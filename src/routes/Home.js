@@ -32,13 +32,30 @@ const Home = ({serverUrl}) => {
     })
   }
 
+  const validatePrompt = (prompt) => {
+    if (!prompt) return 'no prompt'
+    if (prompt === activePrompt) return 'extant prompt'
+    if (listContainsPrompt(currentWords, prompt)) return 'prompt is in current pool'
+    if (listContainsPrompt(pastWords, prompt)) return 'prompt already used'
+    if (listContainsPrompt(pendingWords, prompt)) return 'prompt already suggested'
+    return null
+  }
+
+  const listContainsPrompt = (words, prompt) => {
+    if (words.includes(prompt)) return true
+    let lowerCasePrompt = prompt.toLowerCase()
+    let lowerCaseWords = words.map((word) => word.toLowerCase())
+    if (lowerCaseWords.includes(lowerCasePrompt)) return true
+    return false
+  }
+
 
   return (
     <>
       <h1 className="acc">This Week's WArt word is:</h1>
       <p id="current-prompt">{activePrompt}</p>
       <div className="spacer"/>
-      <SuggestionBox onSubmit={submitPrompt} />
+      <SuggestionBox onSubmit={submitPrompt} validatePrompt={validatePrompt}/>
       <div className="spacer"/>
       <WordList title="Pending Approval" content={pendingWords} />
       <WordList title="Prompt Pool" content={currentWords} />

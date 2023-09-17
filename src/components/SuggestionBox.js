@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import "../styles/suggestionbox.css"
 
-const SuggestionBox = ({onSubmit}) => {
+const SuggestionBox = ({onSubmit, validatePrompt}) => {
   const [suggestion, setSuggestion] = useState('')
   const [error, setError] = useState('')
   const [submittedPrompt, setSubmittedPrompt] = useState('')
@@ -15,22 +15,18 @@ const SuggestionBox = ({onSubmit}) => {
 
     let trimmedSuggestion = suggestion.trim()
 
-    if (promptIsValid(trimmedSuggestion)) {
+    let errorMessage = validatePrompt(trimmedSuggestion)
+    if (errorMessage) {
+      setError(errorMessage)
+      setSubmittedPrompt('')
+    }
+    else {
       onSubmit(trimmedSuggestion)
       setError('')
       setSubmittedPrompt(trimmedSuggestion)
-      setTimeout(() => setSubmittedPrompt(''), 3000)
     }
 
     setSuggestion('')
-  }
-
-  var promptIsValid = (prompt) => {
-    if (!prompt) {
-      setError('no prompt')
-      return false
-    }
-    return true
   }
 
   return (
