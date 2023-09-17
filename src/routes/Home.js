@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import useFetch from '../hooks/useFetch'
 import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
+import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 
@@ -11,7 +12,6 @@ const Home = ({serverUrl}) => {
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
   const [pendingWords, setPendingWords] = useState([])
-  const [testWords, setTestWords] = useState([])
 
 
   useEffect(() => {
@@ -19,7 +19,6 @@ const Home = ({serverUrl}) => {
     get('category/current', setCurrentWords)
     get('category/past', setPastWords)
     get('category/pending', setPendingWords)
-    get('category/test', setTestWords)
   }, [])
 
   const submitPrompt = (prompt) => {
@@ -52,6 +51,8 @@ const Home = ({serverUrl}) => {
 
   return (
     <>
+      <Header/>
+      <div className="spacer"/>
       <h1 className="acc">This Week's WArt word is:</h1>
       <p id="current-prompt">{activePrompt}</p>
       <div className="spacer"/>
@@ -60,7 +61,6 @@ const Home = ({serverUrl}) => {
       <WordList title="Pending Approval" content={pendingWords} />
       <WordList title="Prompt Pool" content={currentWords} />
       <WordList title="Past Prompts" content={pastWords} />
-      <WordList title="Test" content={testWords} />
       <div className="spacer"/>
       <Footer/>
     </>

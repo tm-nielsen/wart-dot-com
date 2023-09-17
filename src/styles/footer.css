@@ -12,11 +12,11 @@ a {
 
   border-radius: 1em;
   border-style: solid;
-  border-width: 0.5rem;
+  border-width: 0.4rem;
   border-color: var(--accent-col);
 
   transform: scale(1);
-  transition: all 0.25s ease-out;
+  transition: all 0.15s ease-in;
 }
 
 a:hover {
@@ -24,17 +24,5 @@ a:hover {
   color: var(--accent-col);
   transform: scale(1.05);
   box-shadow: 0.25rem 0.25rem 1.25rem black;
-  transition:all 0.05s ease-in;
-}
-
-#club-link {
-  display: block;
-  max-width: 1.5em;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-#club-icon {
-  display: block;
-  width: 1.5em;
+  transition:all 0.05s ease-out;
 }
