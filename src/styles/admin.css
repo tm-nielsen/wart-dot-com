@@ -55,6 +55,7 @@ input[type='radio']:checked {
 
 
 .input-margin {
+  width:auto;
   padding: 0.5rem;
   margin: 0.5rem 0.5rem 3rem;
 }
@@ -66,7 +67,15 @@ input[type='radio']:checked {
   font-size: 3em;
 }
 
+
+.radio-button-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .radio-label {
+  display: contents;
   text-shadow: 0.5rem 0.5rem 1rem black;
 }
 

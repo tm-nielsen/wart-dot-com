@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import CategoryRadioButton from './CategoryRadioButton'
 
 const EditPage = ({insertPrompt, removePrompt}) => {
   const [prompt, setPrompt] = useState('')
@@ -28,15 +29,15 @@ const EditPage = ({insertPrompt, removePrompt}) => {
 
       <h2>Category</h2>
       <div className='flex-row input-margin'>
-        <input type="radio" name="category" className='radio-button' id="current"
-          value={category === 'current'} onChange={() => setCategory('current')}/>
-        <label htmlFor="current" className='radio-label'>Current</label>
-        <input type="radio" name="category" className='radio-button' id="past"
-          value={category === 'past'} onChange={() => setCategory('past')}/>
-        <label htmlFor="past" className='radio-label'>Past</label>
-        <input type="radio" name="category" className='radio-button' id="active"
-          value={category === 'active'} onChange={() => setCategory('active')}/>
-        <label htmlFor="active" className='radio-label'>Active</label>
+        <CategoryRadioButton name='category' id='current' currentCategory={category} setCurrentCategory={setCategory}>
+          Current
+        </CategoryRadioButton>
+        <CategoryRadioButton name='category' id='past' currentCategory={category} setCurrentCategory={setCategory}>
+          Past
+        </CategoryRadioButton>
+        <CategoryRadioButton name='category' id='active' currentCategory={category} setCurrentCategory={setCategory}>
+          Active
+        </CategoryRadioButton>
       </div>
 
       <button onClick={handleInsertPrompt} disabled={!prompt || !category}>
