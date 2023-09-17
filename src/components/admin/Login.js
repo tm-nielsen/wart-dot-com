@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import "../../styles/login.css"
 
 const Login = ({onSubmit, showWrong}) => {
@@ -24,6 +25,7 @@ const Login = ({onSubmit, showWrong}) => {
           value={password} onChange={handleChange}/>
       </form>
       {showWrong? <h1>WRONG</h1>: null}
+      <Link to='/'>Home</Link>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
 
 import AdminPageNavigator from '../components/admin/AdminPageNavigator'
@@ -53,7 +52,7 @@ const Admin = ({serverUrl}) => {
         insertPrompt={insertPrompt} removePrompt={removePrompt}
       />
       :<Login onSubmit={onLoginSubmit} showWrong={showWrong} />}
-      <Link to='/'>Home</Link>
+      
     </>
   )
   

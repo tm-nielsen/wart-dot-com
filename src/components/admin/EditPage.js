@@ -1,11 +1,10 @@
 import React from 'react'
-import AdminPage from './AdminPage'
 
-const EditPage = ({insertPrompt, removePrompt, back}) => {
+const EditPage = ({insertPrompt, removePrompt}) => {
   return (
-    <AdminPage title='Edit Prompt Lists' back={back}>
-      
-    </AdminPage>
+    <>
+      <h1>Edit Prompt Lists</h1>
+    </>
   )
 }
 

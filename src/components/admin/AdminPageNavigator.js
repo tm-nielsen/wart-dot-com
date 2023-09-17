@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import AdminNavPage from './AdminNavPage'
 import ApprovalPage from './ApprovalPage'
 import ConfirmSelectPage from './ConfirmSelectPage'
@@ -10,12 +11,37 @@ const AdminPageNavigator = ({commitApproved, commitRejected, confirmSelect, inse
 
   const returnToMainPage = () => setCurrentPage(0)
 
+  let pageContent
   switch(currentPage) {
-    case 0: return <AdminNavPage setPage={setCurrentPage} />
-    case 1: return <ApprovalPage commitApproved={commitApproved} commitRejected={commitRejected} back={returnToMainPage} />
-    case 2: return <ConfirmSelectPage confirm={confirmSelect} back={returnToMainPage} />
-    case 3: return <EditPage insertPrompt={insertPrompt} removePrompt={removePrompt} back={returnToMainPage} />
+    case 0:
+      pageContent = <AdminNavPage setPage={setCurrentPage} />
+      break
+
+    case 1: 
+      pageContent = <ApprovalPage commitApproved={commitApproved} commitRejected={commitRejected} back={returnToMainPage} />
+      break
+
+    case 2:
+      pageContent = <ConfirmSelectPage confirm={confirmSelect} back={returnToMainPage} />
+      break
+
+    case 3:
+      pageContent = <EditPage insertPrompt={insertPrompt} removePrompt={removePrompt} back={returnToMainPage} />
+      break
   }
+
+  return (
+    <>
+      <div className="admin-page">
+        {pageContent}
+      </div>
+      <div className="flex-row">
+        {currentPage > 0? <a onClick={returnToMainPage}>Back</a>:null}
+        <Link to='/'>Home</Link>
+      </div>
+    </>
+  )
+  
 }
 
 export default AdminPageNavigator

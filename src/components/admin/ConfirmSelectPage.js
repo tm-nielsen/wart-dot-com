@@ -1,11 +1,11 @@
 import React from 'react'
-import AdminPage from './AdminPage'
 
-const ConfirmSelectPage = ({confirm, back}) => {
+const ConfirmSelectPage = ({confirm}) => {
   return (
-    <AdminPage title={'Select a New Active Prompt'} back={back}>
+    <>
+      <h1>Select a New Active Prompt</h1>
       <button onClick={confirm}>Confirm</button>
-    </AdminPage>
+    </>
   )
 }
 

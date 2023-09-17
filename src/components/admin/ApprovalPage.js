@@ -1,11 +1,10 @@
 import React from 'react'
-import AdminPage from './AdminPage'
 
-const ApprovalPage = ({commitApproved, commitRejected, back}) => {
+const ApprovalPage = ({commitApproved, commitRejected}) => {
   return (
-    <AdminPage title='Approve Pending Submissions' back={back}>
-      
-    </AdminPage>
+    <>
+      <h1>Approve Pending Submissions</h1>
+    </>
   )
 }
 
