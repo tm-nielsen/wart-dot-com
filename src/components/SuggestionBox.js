@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, {useState} from 'react'
+import "../styles/suggestionbox.css"
 
 const SuggestionBox = ({onSubmit}) => {
   const [suggestion, setSuggestion] = useState('')
@@ -35,14 +35,15 @@ const SuggestionBox = ({onSubmit}) => {
 
   return (
     <>
-    <form action="" onSubmit={handleSubmit}>
-      <label>
+    <form action="" onSubmit={handleSubmit} id='suggestion-form' className='flex-row' >
+      <label id='suggestion-label'>
         Suggest a Prompt:
-        <input placeholder="enter prompt" value={suggestion} onChange={handleChange}/>
       </label>
+      <input id='suggestion-field' className='shadow'
+        placeholder="enter prompt" value={suggestion} onChange={handleChange}/>
     </form>
-    {error? <h1>Error: {error}</h1>: <></>}
-    {submittedPrompt? <h1 className='acc'>"{submittedPrompt}" submitted</h1>: <></>}
+    {error? <p className='message'>Error: {error}</p>: <></>}
+    {submittedPrompt? <p className='message acc'>"{submittedPrompt}" submitted</p>: <></>}
     </>
   )
 }
