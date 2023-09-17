@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import useGet from '../hooks/useGet'
+import useFetch from '../hooks/useFetch'
 import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
 import Footer from '../components/Footer'
 
 
 const Home = ({serverUrl}) => {
-  const [getData, error] = useGet(serverUrl)
+  const [fetchData, error, setError] = useFetch(serverUrl)
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
@@ -15,18 +15,18 @@ const Home = ({serverUrl}) => {
 
 
   useEffect(() => {
-    getData('active', setActivePrompt)
-    getData('category/current', setCurrentWords)
-    getData('category/past', setPastWords)
-    getData('category/pending', setPendingWords)
-    getData('category/test', setTestWords)
+    fetchData('active', setActivePrompt)
+    fetchData('category/current', setCurrentWords)
+    fetchData('category/past', setPastWords)
+    fetchData('category/pending', setPendingWords)
+    fetchData('category/test', setTestWords)
   }, [])
 
   const submitPrompt = (prompt) => {
     console.log('submitting prompt: ', prompt)
-
-    // getData('active', setActivePrompt)
-    // getData('category/pending', setPendingWords)
+    
+    // fetchData('active', setActivePrompt)
+    // fetchData('category/pending', setPendingWords)
   }
 
 
