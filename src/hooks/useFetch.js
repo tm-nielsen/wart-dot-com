@@ -1,13 +1,32 @@
-import React, {useState, useEffect} from 'react'
-
 const useFetch = (serverUrl) => {
-  const [error, setError] = useState('')
 
-  const fetchData = async (address, handleResponse, requestOptions) => {
+  const get = async(address, handleResponse) => {
+    wrapFetch(address, handleResponse)
+  }
+
+  const post = async(address, requestBody, handleResponse) => {
+    wrapFetch(address, handleResponse, getRequestOptions('POST', requestBody))
+  }
+
+  const patch = async(address, requestBody, handleResponse) => {
+    wrapFetch(address, handleResponse, getRequestOptions('PATCH', requestBody))
+  }
+
+  const getRequestOptions = (methodName, requestBody) => {
+    return {
+      method: methodName,
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    }
+  }
+
+  const wrapFetch = async(address, handleResponse, requestOptions) => {
     try {
       let url = `${serverUrl}/${address}`
       const response = await fetch(url, requestOptions)
-      const contentType = response.headers.get('content-type')
+      const contentType = response.headers.get('Content-type')
 
       if (contentType?.includes('application/json'))
       {
@@ -16,14 +35,7 @@ const useFetch = (serverUrl) => {
       } else
       {
         const dataString = await response.text()
-
-        try {
-          const dataObject = JSON.parse(dataString)
-          handleResponse(dataObject)
-        } catch(error)
-        {
-          handleResponse(dataString)
-        }
+        handleResponse(dataString)
       }
     }
     catch(error) {
@@ -31,11 +43,10 @@ const useFetch = (serverUrl) => {
       if (errorString === '{}')
         errorString = 'There was an issue fetching from the server'
       console.error(errorString)
-      setError(errorString)
     }
   }
 
-  return [fetchData, error, setError]
+  return {get, post, patch}
 }
 
 export default useFetch

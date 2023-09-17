@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 
 
 const Home = ({serverUrl}) => {
-  const [fetchData, error, setError] = useFetch(serverUrl)
+  const {get} = useFetch(serverUrl)
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
@@ -15,18 +15,18 @@ const Home = ({serverUrl}) => {
 
 
   useEffect(() => {
-    fetchData('active', setActivePrompt)
-    fetchData('category/current', setCurrentWords)
-    fetchData('category/past', setPastWords)
-    fetchData('category/pending', setPendingWords)
-    fetchData('category/test', setTestWords)
+    get('active', setActivePrompt)
+    get('category/current', setCurrentWords)
+    get('category/past', setPastWords)
+    get('category/pending', setPendingWords)
+    get('category/test', setTestWords)
   }, [])
 
   const submitPrompt = (prompt) => {
     console.log('submitting prompt: ', prompt)
     
-    // fetchData('active', setActivePrompt)
-    // fetchData('category/pending', setPendingWords)
+    // get('active', setActivePrompt)
+    // get('category/pending', setPendingWords)
   }
 
 
