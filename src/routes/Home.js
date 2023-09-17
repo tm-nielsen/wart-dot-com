@@ -25,7 +25,7 @@ const Home = ({serverUrl}) => {
   const submitPrompt = (prompt) => {
     console.log('submitting prompt: ', prompt)
     
-    post('', {prompt}, (response) => {
+    post('suggest', {prompt}, (response) => {
       console.log(response)
 
       get('category/pending', setPendingWords)
