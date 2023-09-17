@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 
-const useFetch = (serverUrl) => {
+const useGet = (serverUrl) => {
   const [error, setError] = useState('')
 
-  const fetchData = async (address, handleResponse, requestOptions) => {
+  const getData = async (address, handleResponse, requestOptions) => {
     try {
       let url = `${serverUrl}/${address}`
       const response = await fetch(url, requestOptions)
@@ -35,7 +35,7 @@ const useFetch = (serverUrl) => {
     }
   }
 
-  return [fetchData, error, setError]
+  return [getData, error]
 }
 
-export default useFetch
+export default useGet
