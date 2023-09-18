@@ -21,6 +21,15 @@ body{
   src: url(../assets/BebasNeue.otf);
 }
 
+.background {
+  position: fixed;
+  background-color: var(--main-bg-col);
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
 
 div {
   display: flex;

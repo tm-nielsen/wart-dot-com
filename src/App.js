@@ -17,6 +17,7 @@ import EditPage from "./routes/admin/EditPage";
 const App = () => {
   return (
     <>
+      <div className="background" />
       <Router>
         <AuthContextProvider>
           <Routes>
