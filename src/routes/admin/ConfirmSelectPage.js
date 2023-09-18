@@ -12,10 +12,17 @@ const ConfirmSelectPage = () => {
   }
 
   return (
-    <>
+    <div style={{marginTop: '20em'}}>
       <h1>Select a New Active Prompt</h1>
+      <p className="acc" style={{textAlign: 'center'}}>
+        Warning: this will immediately replace the<br/>
+        current active prompt with a new one<br/>
+        <font className="main" style={{fontWeight: 'bold'}}>
+          COMPLETELY AT RANDOM
+        </font>
+      </p>
       <button onClick={confirmSelect} disabled={disabled}>Confirm</button>
-    </>
+    </div>
   )
 }
 
