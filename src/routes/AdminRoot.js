@@ -1,10 +1,13 @@
 import React from 'react'
-import { Navigate, Link, Outlet } from 'react-router-dom'
+import { Navigate, Link, Outlet, useLocation } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 import "../styles/admin.css"
 
+import AdminFooter from '../components/admin/AdminFooter'
+
 
 const AdminRoot = () => {
+  const location = useLocation()
   const {authorized} = useAuthContext()
 
   if (!authorized)
@@ -15,10 +18,11 @@ const AdminRoot = () => {
       <div id='admin-page'>
         <Outlet />
       </div>
-      <div className="flex-row" id='admin-footer'>
-        <Link to='/admin'>Admin</Link>
+      <AdminFooter showBack={location.pathname !== '/admin'} />
+      {/* <div className="flex-row" id='admin-footer'>
+        {?<Link to='/admin'>Admin</Link>:null}
         <Link to='/'>Home</Link>
-      </div>
+      </div> */}
     </div>
   )
 }
