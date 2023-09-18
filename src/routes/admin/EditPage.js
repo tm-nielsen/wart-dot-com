@@ -1,23 +1,26 @@
 import React, {useState} from 'react'
-import CategoryRadioButton from './CategoryRadioButton'
+import { wrappedPost, wrappedPatch, wrappedDelete } from '../../FetchMethods'
+import { useAuthContext } from '../../contexts/AuthContext'
+import CategoryRadioButton from '../../components/admin/CategoryRadioButton'
 
-const EditPage = ({insertPrompt, removePrompt, overrideActive}) => {
+const EditPage = () => {
   const [prompt, setPrompt] = useState('')
   const [category, setCategory] = useState('')
+  const {password} = useAuthContext()
 
-  const handleInsertPrompt = () => {
-    insertPrompt(prompt, category)
+  const insertPrompt = () => {
+    wrappedPost('insert', {password, prompt, category})
     setPrompt('')
     setCategory('')
   }
 
-  const handleRemovePrompt = () => {
-    removePrompt(prompt)
+  const removePrompt = () => {
+    wrappedDelete('', {password, prompt})
     setPrompt('')
   }
 
-  const handleOverrideActive = () => {
-    overrideActive(prompt)
+  const overrideActivePrompt = () => {
+    wrappedPatch('override', {password, prompt})
     setPrompt('')
   }
 
@@ -42,13 +45,13 @@ const EditPage = ({insertPrompt, removePrompt, overrideActive}) => {
         </CategoryRadioButton>
       </div>
 
-      <button onClick={handleInsertPrompt} disabled={!prompt || !category}>
+      <button onClick={insertPrompt} disabled={!prompt || !category}>
         Insert
       </button>
-      <button onClick={handleRemovePrompt} disabled={!prompt}>
+      <button onClick={removePrompt} disabled={!prompt}>
         Remove
       </button>
-      <button onClick={handleOverrideActive} disabled={!prompt}>
+      <button onClick={overrideActivePrompt} disabled={!prompt}>
         Override Active
       </button>
     </>

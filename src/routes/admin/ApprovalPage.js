@@ -1,16 +1,29 @@
-import React, {useState} from 'react'
-import ApprovalItem from './ApprovalItem'
-import WordList from '../WordList'
+import React, {useState, useEffect} from 'react'
+import { wrappedGet, wrappedPatch } from '../../FetchMethods'
+import { useAuthContext } from '../../contexts/AuthContext'
+import ApprovalItem from '../../components/admin/ApprovalItem'
+import WordList from '../../components/WordList'
 
-const ApprovalPage = ({pendingPrompts, commitApproval}) => {
+const ApprovalPage = () => {
+  const [pendingPrompts, setPendingPrompts] = useState([])
   const [approvedPrompts, setApprovedPrompts] = useState([])
   const [rejectedPrompts, setRejectedPrompts] = useState([])
+  const {password} = useAuthContext()
 
-  const handleCommit = () => {
-    console.log(pendingPrompts)
-    commitApproval(approvedPrompts, rejectedPrompts)
+
+  const updatePendingPromptList = () => {
+    wrappedGet('category/pending', setPendingPrompts)
+  }
+  useEffect(() => {
+    updatePendingPromptList()
+  }, [])
+
+  const commitApproval = async() => {
+    await wrappedPatch('approve', {password, approvedPrompts})
+    await wrappedPatch('reject', {password, rejectedPrompts})
     setApprovedPrompts([])
     setRejectedPrompts([])
+    updatePendingPromptList()
   }
 
   const approvePrompt = (prompt) => {
@@ -46,7 +59,7 @@ const ApprovalPage = ({pendingPrompts, commitApproval}) => {
         <WordList title='Approved' content={approvedPrompts} />
         <WordList title='Rejected' content={rejectedPrompts} />
       </div>
-      <button onClick={handleCommit}>Commit</button>
+      <button onClick={commitApproval}>Commit</button>
     </>
   )
 }
