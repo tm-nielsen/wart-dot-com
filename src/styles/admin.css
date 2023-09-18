@@ -9,7 +9,7 @@ label {
 
 button {
   padding: 0.5em;
-  margin: 0.5em 1em;
+  margin: 0.4em 1em;
 
   background-color: transparent;
   border-radius: 0.5em;
@@ -79,6 +79,11 @@ input[type='radio']:checked {
   text-shadow: 0.5rem 0.5rem 1rem black;
 }
 
+.server-response-header {
+  flex: none;
+  margin-right: 1em;
+  align-self: flex-start;
+}
 
 #login-root {
   display: flex;

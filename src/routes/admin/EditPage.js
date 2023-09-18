@@ -1,26 +1,30 @@
 import React, {useState} from 'react'
 import { wrappedPost, wrappedPatch, wrappedDelete } from '../../FetchMethods'
 import { useAuthContext } from '../../contexts/AuthContext'
+
 import CategoryRadioButton from '../../components/admin/CategoryRadioButton'
+import ServerResponseDisplay from '../../components/admin/ServerResponseDisplay'
+
 
 const EditPage = () => {
   const [prompt, setPrompt] = useState('')
   const [category, setCategory] = useState('')
+  const [serverResponse, setServerResponse] = useState('')
   const {password} = useAuthContext()
 
   const insertPrompt = () => {
-    wrappedPost('insert', {password, prompt, category})
+    wrappedPost('insert', {password, prompt, category}, setServerResponse)
     setPrompt('')
     setCategory('')
   }
 
   const removePrompt = () => {
-    wrappedDelete('', {password, prompt})
+    wrappedDelete('', {password, prompt}, setServerResponse)
     setPrompt('')
   }
 
   const overrideActivePrompt = () => {
-    wrappedPatch('override', {password, prompt})
+    wrappedPatch('override', {password, prompt}, setServerResponse)
     setPrompt('')
   }
 
@@ -54,6 +58,7 @@ const EditPage = () => {
       <button onClick={overrideActivePrompt} disabled={!prompt}>
         Override Active
       </button>
+      <ServerResponseDisplay response={serverResponse} />
     </>
   )
 }
