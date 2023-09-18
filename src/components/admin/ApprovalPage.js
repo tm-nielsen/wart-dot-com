@@ -38,7 +38,9 @@ const ApprovalPage = ({pendingPrompts, commitApproval}) => {
       <h1>Approve Pending Submissions</h1>
       {
       pendingPrompts.map((prompt, index) =>
-        <ApprovalItem key={index} prompt={prompt} approvePrompt={approvePrompt} rejectPrompt={rejectPrompt} />
+        <ApprovalItem key={index} prompt={prompt}
+          handled={approvedPrompts.includes(prompt) || rejectedPrompts.includes(prompt)}
+          approvePrompt={approvePrompt} rejectPrompt={rejectPrompt} />
       )}
       <div>
         <WordList title='Approved' content={approvedPrompts} />

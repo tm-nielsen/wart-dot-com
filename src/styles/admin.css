@@ -103,6 +103,7 @@ input[type='radio']:checked {
   flex-direction: row;
   width: 80vw;
   margin: 0.5em auto;
+  align-items: center;
 }
 
 #approval-button-container {
