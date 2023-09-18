@@ -11,15 +11,15 @@ const AdminRoot = () => {
     return <Navigate to='/login' />
 
   return (
-    <>
+    <div style={{minHeight: '100vh'}}>
       <div id='admin-page'>
         <Outlet />
       </div>
-      <div className="flex-row">
+      <div className="flex-row" id='admin-footer'>
         <Link to='/admin'>Admin</Link>
         <Link to='/'>Home</Link>
       </div>
-    </>
+    </div>
   )
 }
 

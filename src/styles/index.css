@@ -6,6 +6,8 @@ body{
   --main-col-faded: #ff5f5ca5;
   --accent-col-faded: #00cecba5;
 
+  margin: 0;
+
   background-color: var(--main-bg-col);
   color: var(--main-col);
 
