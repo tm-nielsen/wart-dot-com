@@ -11,12 +11,14 @@ const ApprovalPage = () => {
   const {password} = useAuthContext()
 
 
-  const updatePendingPromptList = () => {
-    wrappedGet('category/pending', setPendingPrompts)
-  }
   useEffect(() => {
     updatePendingPromptList()
   }, [])
+
+  const updatePendingPromptList = () => {
+    wrappedGet('category/pending', setPendingPrompts)
+  }
+
 
   const commitApproval = async() => {
     if (approvedPrompts.length > 0)
@@ -26,6 +28,16 @@ const ApprovalPage = () => {
     setApprovedPrompts([])
     setRejectedPrompts([])
     updatePendingPromptList()
+  }
+
+  const approveAll = () => {
+    setApprovedPrompts(pendingPrompts)
+    setRejectedPrompts([])
+  }
+
+  const rejectAll = () => {
+    setRejectedPrompts(pendingPrompts)
+    setApprovedPrompts([])
   }
 
   const approvePrompt = (prompt) => {
@@ -51,6 +63,10 @@ const ApprovalPage = () => {
   return (
     <>
       <h1>Approve Pending Submissions</h1>
+      <div className='flex-row'>
+        <button id='approve-button' className='approval-button' onClick={approveAll}>Approve All</button>
+        <button id='reject-button' className='approval-button' onClick={rejectAll}>Reject All</button>
+      </div>
       {
       pendingPrompts.map((prompt, index) =>
         <ApprovalItem key={index} prompt={prompt}
