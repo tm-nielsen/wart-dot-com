@@ -30,7 +30,7 @@ const Admin = ({serverUrl}) => {
 
   const commitApprovedPrompts = (approvedPrompts) => {
     console.log('committng approved prompts', approvedPrompts)
-    patch('accept', {password, approvedPrompts}, logResponse)
+    patch('approve', {password, approvedPrompts}, logResponse)
 
     get('category/pending', setPendingWords)
   }
