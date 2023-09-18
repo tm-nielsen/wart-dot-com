@@ -1,19 +1,19 @@
 const serverUrl = 'http://localhost:3001'
 
-export const wrappedGet = (address, handleResponse) => {
-  wrappedFetch(address, handleResponse)
+export const wrappedGet = async(address, handleResponse) => {
+  await wrappedFetch(address, handleResponse)
 }
 
-export const wrappedPost = (address, requestBody, handleResponse) => {
-  wrappedFetch(address, handleResponse, makeRequestOptions('POST', requestBody))
+export const wrappedPost = async(address, requestBody, handleResponse) => {
+  await wrappedFetch(address, handleResponse, makeRequestOptions('POST', requestBody))
 }
 
-export const wrappedPatch = (address, requestBody, handleResponse) => {
-  wrappedFetch(address, handleResponse, makeRequestOptions('PATCH', requestBody))
+export const wrappedPatch = async(address, requestBody, handleResponse) => {
+  await wrappedFetch(address, handleResponse, makeRequestOptions('PATCH', requestBody))
 }
 
-export const wrappedDelete = (address, requestBody, handleResponse) => {
-  wrappedFetch(address, handleResponse, makeRequestOptions('DELETE', requestBody))
+export const wrappedDelete = async(address, requestBody, handleResponse) => {
+  await wrappedFetch(address, handleResponse, makeRequestOptions('DELETE', requestBody))
 }
 
 const makeRequestOptions = (methodName, requestBody) => {
@@ -32,16 +32,18 @@ const wrappedFetch = async(address, handleResponse, requestOptions) => {
     const response = await fetch(url, requestOptions)
     const contentType = response.headers.get('Content-type')
 
-    if (contentType?.includes('application/json'))
-    {
-      const dataObject = await response.json()
-      try { handleResponse(dataObject) }
-      catch(error) { console.error(error) }
-    } else
-    {
-      const dataString = await response.text()
-      try { handleResponse(dataString) }
-      catch (error) { console.log(error) }
+    if (handleResponse) {
+      if (contentType?.includes('application/json'))
+      {
+        const dataObject = await response.json()
+        try { handleResponse(dataObject) }
+        catch(error) { console.error(error) }
+      } else
+      {
+        const dataString = await response.text()
+        try { handleResponse(dataString) }
+        catch (error) { console.log(error) }
+      }
     }
   }
   catch(error) {
