@@ -64,8 +64,8 @@ const ApprovalPage = () => {
     <>
       <h1>Approve Pending Submissions</h1>
       <div className='flex-row'>
-        <button id='approve-button' className='approval-button' onClick={approveAll}>Approve All</button>
-        <button id='reject-button' className='approval-button' onClick={rejectAll}>Reject All</button>
+        <button className='approve-button' onClick={approveAll}>Approve All</button>
+        <button className='reject-button' onClick={rejectAll}>Reject All</button>
       </div>
       {
       pendingPrompts.map((prompt, index) =>

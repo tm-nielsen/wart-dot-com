@@ -1,4 +1,4 @@
-label {
+.label {
   flex: 1;
   max-width: 50%;
 
@@ -97,43 +97,43 @@ input[type='radio']:checked {
 }
 
 
-#admin-page {
+.admin-page {
   margin-top: 5em;
 }
 
-#admin-footer {
+.admin-footer {
   margin-top: 6em;
   margin-bottom: 2em;
 }
 
 
 
-#prompt-approval-item {
+.prompt-approval-item {
   flex-direction: row;
   width: 80vw;
   margin: 0.5em auto;
   align-items: center;
 }
 
-#approval-button-container {
+.approval-button-container {
   width: 50%;
   flex-direction: row;
 }
 
-.approval-button {
+.approve-button {
   flex: 1;
   border-width: 0.2rem;
-  border-color: var(--accent-col);
 
+  color: var(--accent-col);
+  border-color: var(--accent-col);
   font-size: 1.5em;
 }
 
-#approve-button {
-  color: var(--accent-col);
-  border-color: var(--accent-col);
-}
+.reject-button {
+  flex: 1;
+  border-width: 0.2rem;
 
-#reject-button {
   color: var(--main-col);
   border-color: var(--main-col);
+  font-size: 1.5em;
 }

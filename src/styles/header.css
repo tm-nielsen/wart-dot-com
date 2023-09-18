@@ -1,4 +1,4 @@
-#header {
+.header {
   margin-top: 1em;
   display: flex;
   flex-direction: row;
@@ -22,7 +22,7 @@
   margin: auto;
 }
 
-#header-text {
+.header-text {
   margin-left: 1em;
   margin-right: auto;
 

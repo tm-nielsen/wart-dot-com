@@ -4,11 +4,11 @@ import '../styles/wordlist.css'
 const WordList = ({title, content}) => {
   if (Array.isArray(content) && content.length > 0)
   return (
-    <div id="word-list-container">
+    <div className="word-list-container">
       <h2>{title}:</h2>
-      <ol id="word-list">
+      <ol className="word-list">
         {content.map((word, index) =>
-          <p key={index} id="prompt" className='acc-faded'>{word}</p>)
+          <p key={index} className='word-list-item acc-faded'>{word}</p>)
         }
       </ol>
     </div>

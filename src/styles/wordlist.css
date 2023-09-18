@@ -1,8 +1,8 @@
-#word-list-container {
+.word-list-container {
   padding: 1em 0 2em;
 }
 
-#word-list {
+.word-list {
   flex-wrap: wrap;
   margin: 0.5em 0;
   
@@ -12,14 +12,14 @@
   border-color: var(--accent-col);
 }
 
-#prompt {
+.word-list-item {
   margin: 0;
   padding: 0.5em;
   font-size: max(1em, 10px);
 
   transition: color 0.25s ease-in;
 }
-#prompt:hover {
+.word-list-item:hover {
   color: var(--accent-col);
   transition: color 0.05s ease-out;
 }

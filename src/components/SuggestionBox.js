@@ -32,7 +32,7 @@ const SuggestionBox = ({onSubmit, validatePrompt}) => {
   return (
     <>
     <form action="" onSubmit={handleSubmit} id='suggestion-form' className='flex-row' >
-      <label id='suggestion-label'>
+      <label htmlFor='suggestion-field' id='suggestion-label'>
         Suggest a Prompt:
       </label>
       <input id='suggestion-field' className='shadow'

@@ -15,7 +15,7 @@ const AdminRoot = () => {
 
   return (
     <div style={{minHeight: '100vh'}}>
-      <div id='admin-page'>
+      <div className='admin-page'>
         <Outlet />
       </div>
       <AdminFooter showBack={location.pathname !== '/admin'} />
