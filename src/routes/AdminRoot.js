@@ -19,10 +19,6 @@ const AdminRoot = () => {
         <Outlet />
       </div>
       <AdminFooter showBack={location.pathname !== '/admin'} />
-      {/* <div className="flex-row" id='admin-footer'>
-        {?<Link to='/admin'>Admin</Link>:null}
-        <Link to='/'>Home</Link>
-      </div> */}
     </div>
   )
 }
