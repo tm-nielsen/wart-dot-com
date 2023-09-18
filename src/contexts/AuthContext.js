@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import useFetch from '../hooks/useFetch'
+import useFetch from '../FetchMethods'
 
 const AuthContext = createContext()
 

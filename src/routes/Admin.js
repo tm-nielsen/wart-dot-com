@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import useFetch from '../hooks/useFetch'
+import {wrappedGet, wrappedPost, wrappedPatch, wrappedDelete} from '../FetchMethods'
 import "../styles/admin.css"
 
 import AdminPageNavigator from '../components/admin/AdminPageNavigator'
@@ -7,7 +7,6 @@ import Login from '../components/admin/Login'
 
 
 const Admin = () => {
-  const {get, post, patch, fetchDelete} = useFetch()
   const [password, setPassword] = useState('')
   const [showWrong, setShowWrong] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
@@ -15,12 +14,12 @@ const Admin = () => {
 
 
   useEffect(() => {
-    get('category/pending', setPendingWords)
+    wrappedGet('category/pending', setPendingWords)
   }, [])
 
   const onLoginSubmit = (value) => {
     setPassword(value)
-    get(`authenticate/${value}`, (response) => {
+    wrappedGet(`authenticate/${value}`, (response) => {
       setAuthenticated(response === true)
       setShowWrong(response !== true)
       setTimeout(() => setShowWrong(false), 2000)
@@ -30,32 +29,32 @@ const Admin = () => {
 
   const commitPromptApproval = async(approvedPrompts, rejectedPrompts) => {
     console.log('committing approved prompts', approvedPrompts)
-    await patch('approve', {password, approvedPrompts}, logResponse)
+    await wrappedPatch('approve', {password, approvedPrompts}, logResponse)
 
     console.log('committing rejected prompts', rejectedPrompts)
-    await patch('reject', {password, rejectedPrompts}, (logResponse))
+    await wrappedPatch('reject', {password, rejectedPrompts}, (logResponse))
 
-    get('category/pending', setPendingWords)
+    wrappedGet('category/pending', setPendingWords)
   }
 
   const confirmSelectionOfNewPrompt = () => {
     console.log('selection of new active prompt confirmed')
-    patch('select', {password}, logResponse)
+    wrappedPatch('select', {password}, logResponse)
   }
 
   const insertPrompt = (prompt, category) => {
     console.log('inserting prompt', prompt, 'into category', category)
-    post('insert', {password, prompt, category}, logResponse)
+    wrappedPost('insert', {password, prompt, category}, logResponse)
   }
 
   const removePrompt = (prompt) => {
     console.log('removing', prompt, 'from all lists')
-    fetchDelete('', {password, prompt}, logResponse)
+    wrappedDelete('', {password, prompt}, logResponse)
   }
 
   const overrideActivePrompt = (prompt) => {
     console.log('overwriting current prompt with', prompt)
-    patch('override', {password, prompt}, logResponse)
+    wrappedPatch('override', {password, prompt}, logResponse)
   }
 
   const logResponse = (response) => {

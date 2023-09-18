@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import useFetch from '../hooks/useFetch'
+import {wrappedGet, wrappedPost} from '../FetchMethods'
 import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
 import Header from '../components/Header'
@@ -7,7 +7,6 @@ import Footer from '../components/Footer'
 
 
 const Home = () => {
-  const {get, post} = useFetch()
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
@@ -15,19 +14,19 @@ const Home = () => {
 
 
   useEffect(() => {
-    get('active', setActivePrompt)
-    get('category/current', setCurrentWords)
-    get('category/past', setPastWords)
-    get('category/pending', setPendingWords)
+    wrappedGet('active', setActivePrompt)
+    wrappedGet('category/current', setCurrentWords)
+    wrappedGet('category/past', setPastWords)
+    wrappedGet('category/pending', setPendingWords)
   }, [])
 
   const submitPrompt = (prompt) => {
     console.log('submitting prompt: ', prompt)
     
-    post('suggest', {prompt}, (response) => {
+    wrappedPost('suggest', {prompt}, (response) => {
       console.log(response)
 
-      get('category/pending', setPendingWords)
+      wrappedGet('category/pending', setPendingWords)
     })
   }
 
