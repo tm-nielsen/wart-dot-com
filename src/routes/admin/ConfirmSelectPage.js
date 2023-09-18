@@ -12,7 +12,7 @@ const ConfirmSelectPage = () => {
   }
 
   return (
-    <div style={{marginTop: '20em'}}>
+    <div style={{marginTop: '16vh'}}>
       <h1>Select a New Active Prompt</h1>
       <p className="acc" style={{textAlign: 'center'}}>
         Warning: this will immediately replace the<br/>
