@@ -28,16 +28,12 @@ const Admin = ({serverUrl}) => {
   }
 
 
-  const commitApprovedPrompts = (approvedPrompts) => {
-    console.log('committng approved prompts', approvedPrompts)
-    patch('approve', {password, approvedPrompts}, logResponse)
+  const commitPromptApproval = async(approvedPrompts, rejectedPrompts) => {
+    console.log('committing approved prompts', approvedPrompts)
+    await patch('approve', {password, approvedPrompts}, logResponse)
 
-    get('category/pending', setPendingWords)
-  }
-
-  const commitRejectedPrompts = (rejectedPrompts) => {
     console.log('committing rejected prompts', rejectedPrompts)
-    patch('reject', {password, rejectedPrompts}, logResponse)
+    await patch('reject', {password, rejectedPrompts}, (logResponse))
 
     get('category/pending', setPendingWords)
   }
@@ -57,6 +53,11 @@ const Admin = ({serverUrl}) => {
     fetchDelete('', {password, prompt}, logResponse)
   }
 
+  const overrideActivePrompt = (prompt) => {
+    console.log('overwriting current prompt with', prompt)
+    patch('override', {password, prompt}, logResponse)
+  }
+
   const logResponse = (response) => {
     console.log(response)
   }
@@ -66,8 +67,8 @@ const Admin = ({serverUrl}) => {
     <>
       {authenticated?
       <AdminPageNavigator
-        pendingPrompts={pendingWords} commitApproved={commitApprovedPrompts} commitRejected={commitRejectedPrompts}
-        confirmSelect={confirmSelectionOfNewPrompt}
+        pendingPrompts={pendingWords} commitApproval={commitPromptApproval}
+        confirmSelect={confirmSelectionOfNewPrompt} overrideActive={overrideActivePrompt}
         insertPrompt={insertPrompt} removePrompt={removePrompt}
       />
       :<Login onSubmit={onLoginSubmit} showWrong={showWrong} />}

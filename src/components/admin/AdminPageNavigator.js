@@ -6,7 +6,7 @@ import ConfirmSelectPage from './ConfirmSelectPage'
 import EditPage from './EditPage'
 
 
-const AdminPageNavigator = ({pendingPrompts, commitApproved, commitRejected, confirmSelect, insertPrompt, removePrompt}) => {
+const AdminPageNavigator = ({pendingPrompts, commitApproval, confirmSelect, insertPrompt, removePrompt, overrideActive}) => {
   const [currentPage, setCurrentPage] = useState(0)
 
   const returnToMainPage = () => setCurrentPage(0)
@@ -18,7 +18,7 @@ const AdminPageNavigator = ({pendingPrompts, commitApproved, commitRejected, con
       break
 
     case 1: 
-      pageContent = <ApprovalPage pendingPrompts={pendingPrompts} commitApproved={commitApproved} commitRejected={commitRejected} />
+      pageContent = <ApprovalPage pendingPrompts={pendingPrompts} commitApproval={commitApproval} />
       break
 
     case 2:
@@ -26,7 +26,7 @@ const AdminPageNavigator = ({pendingPrompts, commitApproved, commitRejected, con
       break
 
     case 3:
-      pageContent = <EditPage insertPrompt={insertPrompt} removePrompt={removePrompt} />
+      pageContent = <EditPage insertPrompt={insertPrompt} removePrompt={removePrompt} overrideActive={overrideActive} />
       break
   }
 

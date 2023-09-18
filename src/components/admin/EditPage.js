@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import CategoryRadioButton from './CategoryRadioButton'
 
-const EditPage = ({insertPrompt, removePrompt}) => {
+const EditPage = ({insertPrompt, removePrompt, overrideActive}) => {
   const [prompt, setPrompt] = useState('')
   const [category, setCategory] = useState('')
 
@@ -13,6 +13,11 @@ const EditPage = ({insertPrompt, removePrompt}) => {
 
   const handleRemovePrompt = () => {
     removePrompt(prompt)
+    setPrompt('')
+  }
+
+  const handleOverrideActive = () => {
+    overrideActive(prompt)
     setPrompt('')
   }
 
@@ -35,9 +40,6 @@ const EditPage = ({insertPrompt, removePrompt}) => {
         <CategoryRadioButton name='category' id='past' currentCategory={category} setCurrentCategory={setCategory}>
           Past
         </CategoryRadioButton>
-        <CategoryRadioButton name='category' id='active' currentCategory={category} setCurrentCategory={setCategory}>
-          Active
-        </CategoryRadioButton>
       </div>
 
       <button onClick={handleInsertPrompt} disabled={!prompt || !category}>
@@ -45,6 +47,9 @@ const EditPage = ({insertPrompt, removePrompt}) => {
       </button>
       <button onClick={handleRemovePrompt} disabled={!prompt}>
         Remove
+      </button>
+      <button onClick={handleOverrideActive} disabled={!prompt}>
+        Override Active
       </button>
     </>
   )

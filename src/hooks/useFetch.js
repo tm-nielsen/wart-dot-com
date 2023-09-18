@@ -1,19 +1,19 @@
 const useFetch = (serverUrl) => {
 
   const get = async(address, handleResponse) => {
-    wrapFetch(address, handleResponse)
+    await wrapFetch(address, handleResponse)
   }
 
   const post = async(address, requestBody, handleResponse) => {
-    wrapFetch(address, handleResponse, getRequestOptions('POST', requestBody))
+    await wrapFetch(address, handleResponse, getRequestOptions('POST', requestBody))
   }
 
   const patch = async(address, requestBody, handleResponse) => {
-    wrapFetch(address, handleResponse, getRequestOptions('PATCH', requestBody))
+    await wrapFetch(address, handleResponse, getRequestOptions('PATCH', requestBody))
   }
 
   const fetchDelete = async(address, requestBody, handleResponse) => {
-    wrapFetch(address, handleResponse, getRequestOptions('DELETE', requestBody))
+    await wrapFetch(address, handleResponse, getRequestOptions('DELETE', requestBody))
   }
 
   const getRequestOptions = (methodName, requestBody) => {

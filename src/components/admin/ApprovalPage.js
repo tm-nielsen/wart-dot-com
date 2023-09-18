@@ -2,14 +2,13 @@ import React, {useState} from 'react'
 import ApprovalItem from './ApprovalItem'
 import WordList from '../WordList'
 
-const ApprovalPage = ({pendingPrompts, commitApproved, commitRejected}) => {
+const ApprovalPage = ({pendingPrompts, commitApproval}) => {
   const [approvedPrompts, setApprovedPrompts] = useState([])
   const [rejectedPrompts, setRejectedPrompts] = useState([])
 
   const handleCommit = () => {
     console.log(pendingPrompts)
-    commitApproved(approvedPrompts)
-    commitRejected(rejectedPrompts)
+    commitApproval(approvedPrompts, rejectedPrompts)
     setApprovedPrompts([])
     setRejectedPrompts([])
   }
