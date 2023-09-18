@@ -19,8 +19,10 @@ const ApprovalPage = () => {
   }, [])
 
   const commitApproval = async() => {
-    await wrappedPatch('approve', {password, approvedPrompts})
-    await wrappedPatch('reject', {password, rejectedPrompts})
+    if (approvedPrompts.length > 0)
+      await wrappedPatch('approve', {password, approvedPrompts})
+    if (rejectedPrompts.length > 0)
+      await wrappedPatch('reject', {password, rejectedPrompts})
     setApprovedPrompts([])
     setRejectedPrompts([])
     updatePendingPromptList()
@@ -59,7 +61,7 @@ const ApprovalPage = () => {
         <WordList title='Approved' content={approvedPrompts} />
         <WordList title='Rejected' content={rejectedPrompts} />
       </div>
-      <button onClick={commitApproval}>Commit</button>
+      <button onClick={commitApproval} disabled={approvedPrompts.length === 0 && rejectedPrompts.length === 0}>Commit</button>
     </>
   )
 }
