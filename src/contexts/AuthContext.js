@@ -1,23 +1,21 @@
 import React, { createContext, useContext, useState } from 'react'
-import useFetch from '../FetchMethods'
+import {wrappedGet} from '../FetchMethods'
 
 const AuthContext = createContext()
 
 export const useAuthContext = () => useContext(AuthContext)
 
 const AuthContextProvider = ({children}) => {
-  const {get} = useFetch()
   const [password, setPassword] = useState('')
   const [authorized, setAuthorized] = useState(false)
 
-  const submitPassword = (value) => {
+  const submitPassword = (value, handleResponse) => {
     setPassword(value)
-    let success
-    get(`authenticate/${value}`, (response) => {
-      success = response === true
+    wrappedGet(`authenticate/${value}`, (response) => {
+      let success = response === true
       setAuthorized(success)
+      handleResponse(success)
     })
-    return success
   }
 
   return (

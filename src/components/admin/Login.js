@@ -1,20 +1,26 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, redirect, Navigate } from 'react-router-dom'
+import { useAuthContext } from '../../contexts/AuthContext'
 
-const Login = ({onSubmit, showWrong}) => {
+const Login = () => {
   const [password, setPassword] = useState('')
+  const [showWrong, setShowWrong] = useState(false)
+  const {submitPassword, authorized} = useAuthContext()
 
   const handleChange = (event) => {
     setPassword(event.target.value)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault()
     if (password) {
-      onSubmit(password)
+      submitPassword(password, (passwordWasCorrect) => setShowWrong(!passwordWasCorrect))
       setPassword('')
     }
   }
+
+  if (authorized)
+    return <Navigate to='/admin' />
 
   return (
     <div id="login-root">

@@ -29,17 +29,22 @@ const makeRequestOptions = (methodName, requestBody) => {
 const wrappedFetch = async(address, handleResponse, requestOptions) => {
   try {
     let url = `${serverUrl}/${address}`
+    console.log(url)
     const response = await fetch(url, requestOptions)
     const contentType = response.headers.get('Content-type')
+    console.log(contentType)
+    console.log(response)
 
     if (contentType?.includes('application/json'))
     {
       const dataObject = await response.json()
-      handleResponse(dataObject)
+      try { handleResponse(dataObject) }
+      catch(error) { console.error(error) }
     } else
     {
       const dataString = await response.text()
-      handleResponse(dataString)
+      try { handleResponse(dataString) }
+      catch (error) { console.log(error) }
     }
   }
   catch(error) {
