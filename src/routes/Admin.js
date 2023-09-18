@@ -6,8 +6,8 @@ import AdminPageNavigator from '../components/admin/AdminPageNavigator'
 import Login from '../components/admin/Login'
 
 
-const Admin = ({serverUrl}) => {
-  const {get, post, patch, fetchDelete} = useFetch(serverUrl)
+const Admin = () => {
+  const {get, post, patch, fetchDelete} = useFetch()
   const [password, setPassword] = useState('')
   const [showWrong, setShowWrong] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)

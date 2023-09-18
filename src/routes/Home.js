@@ -6,8 +6,8 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 
-const Home = ({serverUrl}) => {
-  const {get, post} = useFetch(serverUrl)
+const Home = () => {
+  const {get, post} = useFetch()
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])

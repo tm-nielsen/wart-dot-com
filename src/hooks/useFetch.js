@@ -1,4 +1,6 @@
-const useFetch = (serverUrl) => {
+const serverUrl = 'http://localhost:3001'
+
+const useFetch = () => {
 
   const get = async(address, handleResponse) => {
     await wrapFetch(address, handleResponse)
