@@ -14,7 +14,7 @@ const AdminRoot = () => {
     return <Navigate to='/login' />
 
   return (
-    <div style={{minHeight: '100vh'}}>
+    <div className='fill-height'>
       <div className='admin-page'>
         <Outlet />
       </div>

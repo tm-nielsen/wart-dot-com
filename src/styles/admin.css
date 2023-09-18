@@ -53,6 +53,14 @@ input[type='radio']:checked {
   border-color: var(--accent-col);
 }
 
+.fill-height {
+  min-height: 100vh;
+}
+@media screen and (max-width: 480px) {
+  .fill-height {
+    min-height: 100vh; min-height: -webkit-fill-available;
+  }
+}
 
 .input-margin {
   width:auto;
@@ -85,10 +93,9 @@ input[type='radio']:checked {
   align-self: flex-start;
 }
 
-#login-root {
+.login-root {
   display: flex;
   flex: 1;
-  min-height: 100vh;
 }
 
 .login-label {
