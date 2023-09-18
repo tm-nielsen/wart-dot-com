@@ -88,12 +88,25 @@ input[type='radio']:checked {
 #login-root {
   display: flex;
   flex: 1;
-  margin-top: 25vh;
+  min-height: 100vh;
 }
 
-#login-form {
+.login-label {
+  margin-top: 25vh;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.login-form {
   display: flex;
-  margin-bottom: 2em;
+  margin: 0.5rem 0.5rem 2rem;
+}
+
+.login-error-display {
+  margin-top: 0;
+  margin-bottom: auto;
 }
 
 

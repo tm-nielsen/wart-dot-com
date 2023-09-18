@@ -2,6 +2,9 @@ import React, {useState} from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 
+import AdminFooter from '../components/admin/AdminFooter'
+
+
 const Login = () => {
   const [password, setPassword] = useState('')
   const [showWrong, setShowWrong] = useState(false)
@@ -13,6 +16,7 @@ const Login = () => {
 
   const handleSubmit = async(event) => {
     event.preventDefault()
+    console.log('submitting password', password)
     if (password) {
       submitPassword(password, (passwordWasCorrect) => setShowWrong(!passwordWasCorrect))
       setPassword('')
@@ -24,13 +28,13 @@ const Login = () => {
 
   return (
     <div id="login-root">
-      <h1>Enter Password</h1>
-      <form id='login-form' onSubmit={handleSubmit}>
-        <input className='text-field shadow' placeholder='enter password'
+      <label htmlFor='password-field' className='login-label'>Enter Password</label>
+      <form className='login-form' onSubmit={handleSubmit}>
+        <input id='password-field' className='text-field shadow' placeholder='enter password'
           value={password} onChange={handleChange}/>
       </form>
-      {showWrong? <h1>WRONG</h1>: null}
-      <Link to='/'>Home</Link>
+      <h1 className='login-error-display'>{showWrong? 'WRONG': ''}</h1>
+      <AdminFooter />
     </div>
   )
 }
