@@ -13,7 +13,7 @@
 #suggestion-field {
   display: flex;
   flex: 1;
-  font-size: 2em;
+  font-size: max(2em, 18px);
   max-width: 40vw;
   padding: 0.2em;
   margin: 1em;
