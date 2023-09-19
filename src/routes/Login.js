@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 
 import AdminFooter from '../components/admin/AdminFooter'
+import ServerStatusWrapper from '../components/ServerStatusWrapper'
 
 
 const Login = () => {
@@ -28,12 +29,14 @@ const Login = () => {
 
   return (
     <div className='fill-height login-root'>
-      <label htmlFor='password-field' className='login-label'>Enter Password</label>
-      <form className='login-form' onSubmit={handleSubmit}>
-        <input id='password-field' className='text-field shadow' placeholder='enter password'
-          value={password} onChange={handleChange}/>
-      </form>
-      <h1 className='login-error-display'>{showWrong? 'WRONG': ''}</h1>
+      <ServerStatusWrapper>
+        <label htmlFor='password-field' className='login-label'>Enter Password</label>
+        <form className='login-form' onSubmit={handleSubmit}>
+          <input id='password-field' className='text-field shadow' placeholder='enter password'
+            value={password} onChange={handleChange}/>
+        </form>
+        <h1 className='login-error-display'>{showWrong? 'WRONG': ''}</h1>
+      </ServerStatusWrapper>
       <AdminFooter />
     </div>
   )

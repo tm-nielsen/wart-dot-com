@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {wrappedGet, wrappedPost} from '../FetchMethods'
+
+import ServerStatusWrapper from '../components/ServerStatusWrapper'
 import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
 import Header from '../components/Header'
@@ -15,8 +17,10 @@ const Home = () => {
 
 
   useEffect(() => {
-    wrappedGet('status', setServerStatus)
-    wrappedGet('active', setActivePrompt)
+    wrappedGet('active', (result) => {
+      setActivePrompt(result)
+      setServerStatus(true)
+    })
     wrappedGet('category/current', setCurrentWords)
     wrappedGet('category/past', setPastWords)
     wrappedGet('category/pending', setPendingWords)
@@ -53,7 +57,7 @@ const Home = () => {
   return (
     <>
       <Header showAdminLink={serverStatus}/>
-      {serverStatus? <>
+      <ServerStatusWrapper>
         <div className="spacer"/>
         <h1 className="acc">This Week's WArt Word is:</h1>
         <p id="current-prompt">{activePrompt}</p>
@@ -64,11 +68,7 @@ const Home = () => {
         <WordList title="Prompt Pool" content={currentWords} />
         <WordList title="Past Prompts" content={pastWords} />
         <div className="spacer"/>
-      </>:
-      <div style={{height: '60vh'}}>
-        <h1>Server Offline</h1>
-      </div>
-      }
+      </ServerStatusWrapper>
       <Footer/>
     </>
   )
