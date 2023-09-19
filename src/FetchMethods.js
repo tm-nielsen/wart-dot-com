@@ -1,4 +1,4 @@
-const serverUrl = 'http://localhost:3001'
+const serverUrl = 'https://wartwords.ca'
 
 export const wrappedGet = async(address, handleResponse) => {
   await wrappedFetch(address, handleResponse)
