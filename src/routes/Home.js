@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 
 
 const Home = () => {
+  const [serverStatus, setServerStatus] = useState(false)
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
@@ -14,6 +15,7 @@ const Home = () => {
 
 
   useEffect(() => {
+    wrappedGet('status', setServerStatus)
     wrappedGet('active', setActivePrompt)
     wrappedGet('category/current', setCurrentWords)
     wrappedGet('category/past', setPastWords)
@@ -50,17 +52,23 @@ const Home = () => {
 
   return (
     <>
-      <Header/>
-      <div className="spacer"/>
-      <h1 className="acc">This Week's WArt Word is:</h1>
-      <p id="current-prompt">{activePrompt}</p>
-      <div className="spacer"/>
-      <SuggestionBox onSubmit={submitPrompt} validatePrompt={validatePrompt}/>
-      <div className="spacer"/>
-      <WordList title="Suggestions Pending Approval" content={pendingWords} />
-      <WordList title="Prompt Pool" content={currentWords} />
-      <WordList title="Past Prompts" content={pastWords} />
-      <div className="spacer"/>
+      <Header showAdminLink={serverStatus}/>
+      {serverStatus? <>
+        <div className="spacer"/>
+        <h1 className="acc">This Week's WArt Word is:</h1>
+        <p id="current-prompt">{activePrompt}</p>
+        <div className="spacer"/>
+        <SuggestionBox onSubmit={submitPrompt} validatePrompt={validatePrompt}/>
+        <div className="spacer"/>
+        <WordList title="Suggestions Pending Approval" content={pendingWords} />
+        <WordList title="Prompt Pool" content={currentWords} />
+        <WordList title="Past Prompts" content={pastWords} />
+        <div className="spacer"/>
+      </>:
+      <div style={{height: '60vh'}}>
+        <h1>Server Offline</h1>
+      </div>
+      }
       <Footer/>
     </>
   )
