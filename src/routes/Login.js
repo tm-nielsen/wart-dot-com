@@ -32,7 +32,8 @@ const Login = () => {
       <ServerStatusWrapper>
         <label htmlFor='password-field' className='login-label'>Enter Password</label>
         <form className='login-form' onSubmit={handleSubmit}>
-          <input id='password-field' className='text-field shadow' placeholder='enter password'
+          <input type='password' id='adminPassword' name='password' autoComplete='current-password'
+            className='text-field shadow' placeholder='enter password'
             value={password} onChange={handleChange}/>
         </form>
         <h1 className='login-error-display'>{showWrong? 'WRONG': ''}</h1>
