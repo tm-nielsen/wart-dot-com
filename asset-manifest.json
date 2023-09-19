@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2321bb3f.css",
+    "main.js": "/static/js/main.d3ba9bca.js",
+    "static/media/TransparentClubIcon.png": "/static/media/TransparentClubIcon.4623b9b2d5b9d07d6ab1.png",
+    "static/media/BebasNeue.otf": "/static/media/BebasNeue.948f870ad6a90f6acf9c.otf",
+    "index.html": "/index.html",
+    "main.2321bb3f.css.map": "/static/css/main.2321bb3f.css.map",
+    "main.d3ba9bca.js.map": "/static/js/main.d3ba9bca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2321bb3f.css",
+    "static/js/main.d3ba9bca.js"
+  ]
+}
