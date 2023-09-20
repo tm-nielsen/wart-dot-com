@@ -49,13 +49,13 @@ const EditPage = () => {
         </CategoryRadioButton>
       </div>
 
-      <button onClick={insertPrompt} disabled={!prompt || !category}>
+      <button className='edit-page-button' onClick={insertPrompt} disabled={!prompt || !category}>
         Insert
       </button>
-      <button onClick={removePrompt} disabled={!prompt}>
+      <button className='edit-page-button' onClick={removePrompt} disabled={!prompt}>
         Remove
       </button>
-      <button onClick={overrideActivePrompt} disabled={!prompt}>
+      <button className='edit-page-button' onClick={overrideActivePrompt} disabled={!prompt}>
         Override Active
       </button>
       <ServerResponseDisplay response={serverResponse} />

@@ -35,6 +35,11 @@ button:disabled {
   border-color: var(--main-col-faded);
   box-shadow: none;
 }
+button.edit-page-button {
+  padding: 0.5em;
+  margin: 0.2em 1em;
+  font-size: 2.5em;
+}
 
 input[type='radio'] {
   appearance: none;
