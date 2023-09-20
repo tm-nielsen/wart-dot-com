@@ -3,7 +3,7 @@ import React from 'react'
 const EndorsedWord = ({word, endorsements, endorsementRange, onClick, selected, minSizeEm, maxSizeEm}) => {
   const getStyle = () => {
     const {min, max} = endorsementRange
-    const range = max - min
+    let range = max - min
     if (range === 0) range = 1
 
     let endorsementRatio = (endorsements - min) / range
