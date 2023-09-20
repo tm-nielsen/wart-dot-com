@@ -50,7 +50,10 @@ const EndorsedWordList = ({title, category}) => {
   return (
     <div className="word-list-container">
       <h2 className='acc'>{title}:</h2>
-      <p className='acc'>Click on a Prompt to Endorse it</p>
+      {selectedPrompt? 
+        <EndorsementPopup word={selectedPrompt} endorsements={selectedEndorsements}
+          endorsePrompt={endorseSelectedPrompt} disabled={endorsedWords.includes(selectedPrompt)} />
+      : <p className='acc'>Click on a Prompt to Endorse it</p>}
       <ol className="word-list main-border">
         {promptInfoArray.map((promptInfo, index) => {
           let {prompt, endorsements} = promptInfo
@@ -58,10 +61,6 @@ const EndorsedWordList = ({title, category}) => {
             onClick={onWordClicked} selected={prompt === selectedPrompt} minSizeEm={1} maxSizeEm={3} />})
         }
       </ol>
-      {selectedPrompt? 
-        <EndorsementPopup word={selectedPrompt} endorsements={selectedEndorsements}
-          endorsePrompt={endorseSelectedPrompt} disabled={endorsedWords.includes(selectedPrompt)} />
-      : null}
     </div>
   )
 }
