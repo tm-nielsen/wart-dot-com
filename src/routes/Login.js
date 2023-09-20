@@ -17,7 +17,6 @@ const Login = () => {
 
   const handleSubmit = async(event) => {
     event.preventDefault()
-    console.log('submitting password', password)
     if (password) {
       submitPassword(password, (passwordWasCorrect) => setShowWrong(!passwordWasCorrect))
       setPassword('')
@@ -30,7 +29,7 @@ const Login = () => {
   return (
     <div className='fill-height login-root'>
       <ServerStatusWrapper>
-        <label htmlFor='password-field' className='login-label'>Enter Password</label>
+        <label htmlFor='adminPassword' className='login-label'>Enter Password</label>
         <form className='login-form' onSubmit={handleSubmit}>
           <input type='password' id='adminPassword' name='password' autoComplete='current-password'
             className='text-field shadow' placeholder='enter password'
