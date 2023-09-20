@@ -16,7 +16,6 @@ a {
   border-color: var(--accent-col);
 
   transform: scale(1);
-  transition: all 0.15s ease-in;
 }
 
 a:hover {
@@ -24,7 +23,6 @@ a:hover {
   color: var(--accent-col);
   transform: scale(1.05);
   box-shadow: 0.25rem 0.25rem 1.25rem black;
-  transition:all 0.05s ease-out;
 }
 
 .footer {
