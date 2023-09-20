@@ -19,9 +19,15 @@ const Home = () => {
   useEffect(() => {
     if (serverStatus === 1) {
       wrappedGet('active', setActivePrompt)
-      wrappedGet('category/current', setCurrentWords)
-      wrappedGet('category/past', setPastWords)
-      wrappedGet('category/pending', setPendingWords)
+      wrappedGet('category/current', (promptInfoArray) => {
+        setCurrentWords(promptInfoArray.map(x => x.prompt))
+      })
+      wrappedGet('category/past', (promptInfoArray) => {
+        setPastWords(promptInfoArray.map(x => x.prompt))
+      })
+      wrappedGet('category/pending', (promptInfoArray) => {
+        setPendingWords(promptInfoArray.map(x => x.prompt))
+      })
     }
   }, [serverStatus])
 

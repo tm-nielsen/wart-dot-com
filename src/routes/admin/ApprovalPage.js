@@ -16,7 +16,9 @@ const ApprovalPage = () => {
   }, [])
 
   const updatePendingPromptList = () => {
-    wrappedGet('category/pending', setPendingPrompts)
+    wrappedGet('category/pending', (promptInfoArray) => {
+      setPendingPrompts(promptInfoArray.map(x => x.prompt))
+    })
   }
 
 
