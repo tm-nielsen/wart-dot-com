@@ -13,7 +13,7 @@ const Home = () => {
   const [serverStatus, setServerStatus] = useState(0)
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
-  const [pastWords, setPastWords] = useState([])
+  const [pastWords, setPastWords] = useState(['Wating on Server'])
   const [pendingWords, setPendingWords] = useState([])
 
 
@@ -71,7 +71,6 @@ const Home = () => {
         <SuggestionBox onSubmit={submitPrompt} validatePrompt={validatePrompt}/>
         <div className="spacer"/>
         <WordList title="Suggestions Pending Approval" content={pendingWords} />
-        <WordList title="Prompt Pool" content={currentWords} />
         <EndorsedWordList title="Prompt Pool" category="current" />
         <WordList title="Past Prompts" content={pastWords} />
         <div className="spacer"/>
