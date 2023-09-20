@@ -9,6 +9,7 @@ import EndorsementPopup from './EndorsementPopup'
 const EndorsedWordList = ({title, category}) => {
   const [promptInfoArray, setPromptInfoArray] = useState([])
   const [maxEndorsements, setMaxEndorsements] = useState(1)
+  const [endorsedWords, setEndorsedWords] = useState ([])
   const [selectedPrompt, setSelectedPrompt] = useState('')
   const [selectedEndorsements, setSelectedEndorsements] = useState(1)
 
@@ -37,6 +38,10 @@ const EndorsedWordList = ({title, category}) => {
   }
 
   const endorseSelectedPrompt = async() => {
+    let newEndorsedWords = endorsedWords
+    newEndorsedWords.push(selectedPrompt)
+    setEndorsedWords(newEndorsedWords)
+    
     await wrappedPatch('endorse', {prompt: selectedPrompt})
     setSelectedEndorsements(selectedEndorsements + 1)
     updatePromptInfoArray()
@@ -55,7 +60,8 @@ const EndorsedWordList = ({title, category}) => {
         }
       </ol>
       {selectedPrompt? 
-        <EndorsementPopup word={selectedPrompt} endorsements={selectedEndorsements} endorsePrompt={endorseSelectedPrompt}  />
+        <EndorsementPopup word={selectedPrompt} endorsements={selectedEndorsements}
+          endorsePrompt={endorseSelectedPrompt} disabled={endorsedWords.includes(selectedPrompt)} />
       : null}
     </div>
   )

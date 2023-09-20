@@ -72,3 +72,8 @@
   border-color: var(--accent-col);
   flex: 1;
 }
+#endorse-button:disabled {
+  transition: all 0.2s ease-out;
+  color: var(--main-col-faded);
+  border-color: var(--main-col-faded);
+}
