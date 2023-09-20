@@ -5,8 +5,8 @@ const EndorsedWord = ({word, endorsements, endorsementRange, onClick, minSizeEm,
     const {min, max} = endorsementRange
     const range = max - min
     if (range === 0) range = 1
-    
-    let endorsementRatio = Math.sqrt((endorsements - min) / range)
+
+    let endorsementRatio = (endorsements - min) / range
     endorsementRatio = Math.sqrt(endorsementRatio)
 
     const fontSize = minSizeEm + endorsementRatio * (maxSizeEm - minSizeEm)

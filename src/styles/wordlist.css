@@ -4,6 +4,7 @@
 
 .word-list {
   flex-wrap: wrap;
+  align-items: center;
   margin: 0.5em 0;
   
   border-radius: 0;
@@ -17,20 +18,13 @@
 
 .word-list-item {
   margin: 0;
-  padding: 0.5em;
+  padding: min(0.5rem, 1vw);
   font-size: max(1em, 10px);
-  color: var(accent-col-faded);
+  color: var(--accent-col-faded);
 
   transition: color 0.25s ease-in;
 }
 .word-list-item:hover {
   color: var(--accent-col);
   transition: color 0.05s ease-out;
-}
-
-
-.absolute-fill {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
 }
