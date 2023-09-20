@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 
 
 const Home = () => {
-  const [serverStatus, setServerStatus] = useState(false)
+  const [serverStatus, setServerStatus] = useState(0)
   const [activePrompt, setActivePrompt] = useState('')
   const [currentWords, setCurrentWords] = useState([])
   const [pastWords, setPastWords] = useState([])
@@ -17,14 +17,13 @@ const Home = () => {
 
 
   useEffect(() => {
-    wrappedGet('active', (result) => {
-      setActivePrompt(result)
-      setServerStatus(true)
-    })
-    wrappedGet('category/current', setCurrentWords)
-    wrappedGet('category/past', setPastWords)
-    wrappedGet('category/pending', setPendingWords)
-  }, [])
+    if (serverStatus === 1) {
+      wrappedGet('active', setActivePrompt)
+      wrappedGet('category/current', setCurrentWords)
+      wrappedGet('category/past', setPastWords)
+      wrappedGet('category/pending', setPendingWords)
+    }
+  }, [serverStatus])
 
   const submitPrompt = (prompt) => {
     console.log('submitting prompt: ', prompt)
@@ -56,8 +55,8 @@ const Home = () => {
 
   return (
     <>
-      <Header showAdminLink={serverStatus}/>
-      <ServerStatusWrapper>
+      <Header showAdminLink={serverStatus === 1}/>
+      <ServerStatusWrapper setExternalStatus={setServerStatus}>
         <div className="spacer"/>
         <h1 className="acc">This Week's WArt Word is:</h1>
         <p id="current-prompt">{activePrompt}</p>

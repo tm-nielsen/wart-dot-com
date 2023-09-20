@@ -24,7 +24,18 @@ const makeRequestOptions = (methodName, requestBody) => {
       'Content-type': 'application/json; charset=UTF-8'
     }
   }
+}
+
+export const getServerStatus = async(handleStatus) => {
+  try {
+    const response = await fetch(`${serverUrl}/status`)
+    handleStatus(response.ok)
   }
+  catch (error) {
+    handleStatus(false)
+  }
+}
+
 
 const wrappedFetch = async(address, handleResponse, requestOptions) => {
   try {

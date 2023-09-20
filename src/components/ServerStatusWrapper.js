@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { wrappedGet } from '../FetchMethods'
+import { getServerStatus, wrappedGet } from '../FetchMethods'
 
 
-const ServerStatusWrapper = ({children}) => {
-  const [serverStatus, setServerStatus] = useState(false)
+const ServerStatusWrapper = ({children, setExternalStatus}) => {
+  const [serverStatus, setServerStatus] = useState(0)
   const [dotCount, setDotCount] = useState(0)
 
   useEffect(() => {
-    wrappedGet('status', setServerStatus)
+    getServerStatus((status) => {
+      let newStatus = status? 1: -1
+      setServerStatus(newStatus)
+      if (setExternalStatus) setExternalStatus(newStatus)
+    })
   }, [])
 
   // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
@@ -32,10 +36,12 @@ const ServerStatusWrapper = ({children}) => {
   useInterval(() => setDotCount((dotCount + 1) % 4), 600)
 
 
-  if (serverStatus) return children
+  if (serverStatus === 1) return children
   else return (
     <div style={{height: '60vh'}}>
-      <h1>Connecting to Server{'.'.repeat(dotCount)}</h1>
+      <h1>{serverStatus === 0?
+        `Connecting to Server${'.'.repeat(dotCount)}`
+        :'Server is Unavailable'}</h1>
     </div>
   )
 }
