@@ -30,7 +30,6 @@ const EndorsedWordList = ({title, category}) => {
 
   
   const onWordClicked = (word, endorsements) => {
-    console.log(word, endorsements)
     setSelectedPrompt(word)
     setSelectedEndorsements(endorsements)
   }

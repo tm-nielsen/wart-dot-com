@@ -33,11 +33,7 @@ const Home = () => {
   }, [serverStatus])
 
   const submitPrompt = (prompt) => {
-    console.log('submitting prompt: ', prompt)
-    
     wrappedPost('suggest', {prompt}, (response) => {
-      console.log(response)
-
       wrappedGet('category/pending', setPendingWords)
     })
   }
