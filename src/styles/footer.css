@@ -26,3 +26,8 @@ a:hover {
   box-shadow: 0.25rem 0.25rem 1.25rem black;
   transition:all 0.05s ease-out;
 }
+
+.footer {
+  margin-top: 6em;
+  margin-bottom: 2em;
+}

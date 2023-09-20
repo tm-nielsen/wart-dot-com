@@ -126,12 +126,6 @@ input[type='radio']:checked {
   margin-top: 5em;
 }
 
-.admin-footer {
-  margin-top: 6em;
-  margin-bottom: 2em;
-}
-
-
 
 .prompt-approval-item {
   flex-direction: row;
