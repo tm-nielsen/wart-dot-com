@@ -8,6 +8,7 @@ const AdminNavPage = () => {
       <Link to='approve'>Approve Submissions</Link>
       <Link to='confirm'>Select New Prompt</Link>
       <Link to='edit'>Edit</Link>
+      <Link to='endorsements'>Endorsements</Link>
     </>
   )
 }

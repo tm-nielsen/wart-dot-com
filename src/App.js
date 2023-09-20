@@ -12,6 +12,7 @@ import AdminNavPage from "./routes/admin/AdminNavPage";
 import ApprovalPage from "./routes/admin/ApprovalPage";
 import ConfirmSelectPage from "./routes/admin/ConfirmSelectPage";
 import EditPage from "./routes/admin/EditPage";
+import EndorsementsPage from "./routes/admin/EndorsementsPage";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="approve" element={<ApprovalPage />} />
               <Route path="confirm" element={<ConfirmSelectPage />} />
               <Route path="edit" element={<EditPage />} />
+              <Route path='endorsements' element={<EndorsementsPage />} />
             </Route>
             <Route path="*" element={<h1>Error: Page does not exist</h1>} />
           </Routes>
