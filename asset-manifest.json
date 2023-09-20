@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.a4f5eed7.css",
-    "main.js": "/static/js/main.be89093f.js",
+    "main.css": "/static/css/main.d0f3e1b6.css",
+    "main.js": "/static/js/main.411f05dc.js",
     "static/media/TransparentClubIcon.png": "/static/media/TransparentClubIcon.4623b9b2d5b9d07d6ab1.png",
     "static/media/BebasNeue.otf": "/static/media/BebasNeue.948f870ad6a90f6acf9c.otf",
     "index.html": "/index.html",
-    "main.a4f5eed7.css.map": "/static/css/main.a4f5eed7.css.map",
-    "main.be89093f.js.map": "/static/js/main.be89093f.js.map"
+    "main.d0f3e1b6.css.map": "/static/css/main.d0f3e1b6.css.map",
+    "main.411f05dc.js.map": "/static/js/main.411f05dc.js.map"
   },
   "entrypoints": [
-    "static/css/main.a4f5eed7.css",
-    "static/js/main.be89093f.js"
+    "static/css/main.d0f3e1b6.css",
+    "static/js/main.411f05dc.js"
   ]
 }
