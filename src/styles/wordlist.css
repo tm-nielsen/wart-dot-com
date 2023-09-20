@@ -21,10 +21,4 @@
   padding: min(0.5rem, 1vw);
   font-size: max(1em, 10px);
   color: var(--accent-col-faded);
-
-  transition: color 0.25s ease-in;
-}
-.word-list-item:hover {
-  color: var(--accent-col);
-  transition: color 0.05s ease-out;
 }

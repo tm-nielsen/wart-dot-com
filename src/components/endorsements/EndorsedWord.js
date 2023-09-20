@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EndorsedWord = ({word, endorsements, endorsementRange, onClick, minSizeEm, maxSizeEm}) => {
+const EndorsedWord = ({word, endorsements, endorsementRange, onClick, selected, minSizeEm, maxSizeEm}) => {
   const getStyle = () => {
     const {min, max} = endorsementRange
     const range = max - min
@@ -10,14 +10,15 @@ const EndorsedWord = ({word, endorsements, endorsementRange, onClick, minSizeEm,
     endorsementRatio = Math.sqrt(endorsementRatio)
 
     const fontSize = minSizeEm + endorsementRatio * (maxSizeEm - minSizeEm)
+    const colorString = `color-mix(in lch, var(--accent-col-faded), var(--main-col) ${endorsementRatio * 100}%)`
 
     return {fontSize: `max(${fontSize}em, 8px)`,
-      color: `color-mix(in lch, var(--accent-col-faded), var(--main-col) ${endorsementRatio * 100}%)`}
+      color: (selected? '': colorString)}
   }
 
   return (
-    <p className="word-list-item" onClick={() => onClick(word, endorsements)}
-    style={getStyle()}>{word}</p>
+    <p className={'word-list-item ' + (selected? 'selected-word': 'selectable-word')}
+      onClick={() => onClick(word, endorsements)} style={getStyle()}>{word}</p>
   )
 }
 

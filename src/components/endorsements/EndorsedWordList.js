@@ -54,7 +54,7 @@ const EndorsedWordList = ({title, category}) => {
         {promptInfoArray.map((promptInfo, index) => {
           let {prompt, endorsements} = promptInfo
           return <EndorsedWord key={index} word={prompt} endorsements={endorsements} endorsementRange={endorsementRange}
-            onClick={onWordClicked} minSizeEm={1} maxSizeEm={3} />})
+            onClick={onWordClicked} selected={prompt === selectedPrompt} minSizeEm={1} maxSizeEm={3} />})
         }
       </ol>
       {selectedPrompt? 

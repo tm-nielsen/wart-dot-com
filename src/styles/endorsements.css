@@ -39,3 +39,23 @@
   color: var(--main-col-faded);
   border-color: var(--main-col-faded);
 }
+
+
+.selectable-word {
+  border-radius: 0.5em;
+
+  transition: all 0.25s ease-in;
+}
+.selectable-word:hover, .selectable-word:focus {
+  color: var(--accent-col);
+  background-color: #444;
+  transition: all 0.05s ease-out;
+}
+
+.selected-word {
+  border-radius: 0.5em;
+
+  color: var(--accent-col);
+  background-color: black;
+  transition: all 0.05s ease-out;
+}
