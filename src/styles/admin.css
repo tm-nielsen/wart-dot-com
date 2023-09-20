@@ -1,7 +1,9 @@
 .label {
   flex: 1;
   max-width: 50%;
+  margin: 0 0.4em;
 
+  text-wrap: nowrap;
   overflow: auto;
   font-size: 2.5em;
   font-weight: bold;
@@ -131,7 +133,7 @@ input[type='radio']:checked {
 
 .prompt-approval-item {
   flex-direction: row;
-  width: 80vw;
+  width: 90vw;
   margin: 0.5em auto;
   align-items: center;
 }
@@ -139,22 +141,30 @@ input[type='radio']:checked {
 .approval-button-container {
   width: 50%;
   flex-direction: row;
+  margin: auto;
+}
+
+
+.approval-button {
+  flex: 1;
+  margin: 0.2em 0.2em;
+  border-width: 0.2rem;
+
+  font-size: 1.5em;
 }
 
 .approve-button {
-  flex: 1;
-  border-width: 0.2rem;
-
   color: var(--accent-col);
   border-color: var(--accent-col);
-  font-size: 1.5em;
 }
 
 .reject-button {
-  flex: 1;
-  border-width: 0.2rem;
-
   color: var(--main-col);
   border-color: var(--main-col);
-  font-size: 1.5em;
+}
+
+.clear-approval-button {
+  flex: 0.5;
+  color: var(--accent-col-faded);
+  border-color: var(--accent-col-faded);
 }

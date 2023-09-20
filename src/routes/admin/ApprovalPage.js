@@ -60,18 +60,31 @@ const ApprovalPage = () => {
     setApprovedPrompts(approvedPrompts.filter((x) => x != prompt))
   }
 
+  const clearApproval = (prompt) => {
+    setApprovedPrompts(approvedPrompts.filter((x) => x != prompt))
+    setRejectedPrompts(rejectedPrompts.filter((x) => x != prompt))
+  }
+
+
+  const getPromptApprovalState = (prompt) => {
+    if (approvedPrompts.includes(prompt)) return 1
+    if (rejectedPrompts.includes(prompt)) return -1
+    return 0
+  }
+
+
   return (
     <>
       <h1>Approve Pending Submissions</h1>
       <div className='flex-row'>
-        <button className='approve-button' onClick={approveAll}>Approve All</button>
-        <button className='reject-button' onClick={rejectAll}>Reject All</button>
+        <button className='approval-button approve-button' onClick={approveAll}>Approve All</button>
+        <button className='approval-button reject-button' onClick={rejectAll}>Reject All</button>
       </div>
       {
       pendingPrompts.map((prompt, index) =>
         <ApprovalItem key={index} prompt={prompt}
-          handled={approvedPrompts.includes(prompt) || rejectedPrompts.includes(prompt)}
-          approvePrompt={approvePrompt} rejectPrompt={rejectPrompt} />
+          approvalState={getPromptApprovalState(prompt)}
+          approvePrompt={approvePrompt} rejectPrompt={rejectPrompt} clearApproval={clearApproval}/>
       )}
       <div>
         <WordList title='Approved' content={approvedPrompts} />
