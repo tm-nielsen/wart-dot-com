@@ -9,7 +9,8 @@
   margin: 0.4em;
   text-align: center;
   text-wrap: nowrap;
-  overflow: scroll;
+  white-space: nowrap;
+  overflow: auto;
 
   font-size: 2.5em;
   font-weight: bold;
