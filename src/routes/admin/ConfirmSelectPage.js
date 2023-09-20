@@ -9,20 +9,15 @@ const ConfirmSelectPage = () => {
   const {password} = useAuthContext()
 
   const confirmSelect = () => {
-    wrappedPatch('select', {password}, setServerResponse)
-    setDisabled(true)
+    if (confirm('Warning:\nThis will immediately replace the currently active prompt AT RANDOM')) {
+      wrappedPatch('select', {password}, setServerResponse)
+      setDisabled(true)
+    } 
   }
 
   return (
     <div style={{marginTop: '16vh'}}>
       <h1>Select a New Active Prompt</h1>
-      <p className="acc" style={{textAlign: 'center'}}>
-        Warning: this will immediately replace the<br/>
-        current active prompt with a new one<br/>
-        <font className="main" style={{fontWeight: 'bold'}}>
-          COMPLETELY AT RANDOM
-        </font>
-      </p>
       <button onClick={confirmSelect} disabled={disabled}>Confirm</button>
       <ServerResponseDisplay response={serverResponse} />
     </div>
