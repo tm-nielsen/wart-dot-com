@@ -8,7 +8,7 @@ import EndorsementPopup from './EndorsementPopup'
 
 const EndorsedWordList = ({title, category}) => {
   const [promptInfoArray, setPromptInfoArray] = useState([])
-  const [maxEndorsements, setMaxEndorsements] = useState(1)
+  const [endorsementRange, setEndorsementRange] = useState({})
   const [endorsedWords, setEndorsedWords] = useState ([])
   const [selectedPrompt, setSelectedPrompt] = useState('')
   const [selectedEndorsements, setSelectedEndorsements] = useState(1)
@@ -22,11 +22,9 @@ const EndorsedWordList = ({title, category}) => {
       setPromptInfoArray(promptInfoArray)
 
       const endorsementsArray = promptInfoArray.map(x => x.endorsements)
-      console.log(endorsementsArray)
-      let m = Math.max(...endorsementsArray)
-      console.log(m)
-      if (m > 1) m--
-      setMaxEndorsements(m)
+      const max = Math.max(...endorsementsArray)
+      const min = Math.min(...endorsementsArray)
+      setEndorsementRange({min, max})
     })
   }
 
@@ -41,7 +39,7 @@ const EndorsedWordList = ({title, category}) => {
     let newEndorsedWords = endorsedWords
     newEndorsedWords.push(selectedPrompt)
     setEndorsedWords(newEndorsedWords)
-    
+
     await wrappedPatch('endorse', {prompt: selectedPrompt})
     setSelectedEndorsements(selectedEndorsements + 1)
     updatePromptInfoArray()
@@ -55,7 +53,7 @@ const EndorsedWordList = ({title, category}) => {
       <ol className="word-list main-border">
         {promptInfoArray.map((promptInfo, index) => {
           let {prompt, endorsements} = promptInfo
-          return <EndorsedWord key={index} word={prompt} endorsements={endorsements - 1} maxEndorsements={maxEndorsements}
+          return <EndorsedWord key={index} word={prompt} endorsements={endorsements} endorsementRange={endorsementRange}
             onClick={onWordClicked} minSizeEm={1} maxSizeEm={4} />})
         }
       </ol>
