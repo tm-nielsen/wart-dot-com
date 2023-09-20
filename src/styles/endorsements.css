@@ -34,7 +34,7 @@
   border-color: var(--accent-col);
   flex: 1;
 }
-#endorse-button:hover {
+#endorse-button:hover, #endorse-button:focus {
   border-color: var(--main-col);
   color: var(--main-col);
 }
@@ -47,7 +47,7 @@
 .selectable-word {
   border-radius: 0.5em;
 }
-.selectable-word:hover, .selectable-word:focus {
+.selectable-word:hover, .selectable-word:focus, .selectable-word:focus {
   color: var(--accent-col);
   background-color: #444;
 }

@@ -18,7 +18,7 @@ a {
   transform: scale(1);
 }
 
-a:hover {
+a:hover, a:focus {
   border-color: var(--main-col);
   color: var(--accent-col);
   transform: scale(1.05);
