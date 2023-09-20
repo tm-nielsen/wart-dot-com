@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { wrappedGet, wrappedPatch } from '../../FetchMethods'
-import '../../styles/wordlist.css'
+import '../../styles/endorsements.css'
 
 import EndorsedWord from './EndorsedWord'
 import EndorsementPopup from './EndorsementPopup'
