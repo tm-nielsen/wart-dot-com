@@ -11,15 +11,64 @@
   border-width: 0.2rem;
   border-color: var(--accent-col);
 }
+.main-border {
+  border-color: var(--main-col);
+}
 
 .word-list-item {
   margin: 0;
   padding: 0.5em;
   font-size: max(1em, 10px);
+  color: var(accent-col-faded);
 
   transition: color 0.25s ease-in;
 }
 .word-list-item:hover {
   color: var(--accent-col);
   transition: color 0.05s ease-out;
+}
+
+
+.absolute-fill {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.endorsement-popup {
+  border: 0.5rem solid var(--main-col);
+  border-radius: 2em;
+  margin: 1em auto;
+  width: calc(80vw - 2em);
+}
+
+.endorse-label {
+  margin: 0.4em;
+  text-align: center;
+  text-wrap: nowrap;
+  overflow: auto;
+
+  font-size: 2.5em;
+  font-weight: bold;
+  color: var(--accent-col);
+}
+
+.endorsement-count {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 5em;
+  font-weight: bolder;
+}
+
+.endorse-row{
+  width: auto;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+#endorse-button {
+  border-color: var(--accent-col);
+  flex: 1;
 }

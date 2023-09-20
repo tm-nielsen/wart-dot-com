@@ -6,6 +6,7 @@ import WordList from '../components/WordList'
 import SuggestionBox from '../components/SuggestionBox'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import EndorsedWordList from '../components/endorsements/EndorsedWordList'
 
 
 const Home = () => {
@@ -71,6 +72,7 @@ const Home = () => {
         <div className="spacer"/>
         <WordList title="Suggestions Pending Approval" content={pendingWords} />
         <WordList title="Prompt Pool" content={currentWords} />
+        <EndorsedWordList title="Prompt Pool" category="current" />
         <WordList title="Past Prompts" content={pastWords} />
         <div className="spacer"/>
       </ServerStatusWrapper>
