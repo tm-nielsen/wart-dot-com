@@ -12,7 +12,7 @@ const EndorsedWord = ({word, endorsements, endorsementRange, onClick, selected, 
     const fontSize = minSizeEm + endorsementRatio * (maxSizeEm - minSizeEm)
     const colorString = `color-mix(in lch, var(--accent-col-faded), var(--main-col) ${endorsementRatio * 100}%)`
 
-    return {fontSize: `max(${fontSize}em, 8px)`,
+    return {fontSize: `max(${fontSize}em, 12px)`,
       color: (selected? '': colorString)}
   }
 

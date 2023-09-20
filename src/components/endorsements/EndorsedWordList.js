@@ -36,6 +36,8 @@ const EndorsedWordList = ({title, category}) => {
   }
 
   const endorseSelectedPrompt = async() => {
+    if (endorsedWords.includes(selectedPrompt)) return
+
     let newEndorsedWords = endorsedWords
     newEndorsedWords.push(selectedPrompt)
     setEndorsedWords(newEndorsedWords)
