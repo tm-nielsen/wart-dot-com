@@ -29,3 +29,24 @@ a:hover, a:focus {
   margin-top: 6em;
   margin-bottom: 2em;
 }
+
+.footer-text-area {
+  width: auto;
+}
+
+.footer-text {
+  display: flex;
+  justify-content: center;
+  border: none;
+  color: var(--accent-col-faded); 
+  font-size: max(1em, 8px);
+}
+
+a.footer-text {
+  font-size: max(1.5em, 14px);
+  color: var(--accent-col);
+  box-shadow: none;
+}
+a.footer-text:hover, a.footer-text:focus {
+  color: var(--main-col)
+}
