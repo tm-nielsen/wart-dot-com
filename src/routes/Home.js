@@ -20,21 +20,21 @@ const Home = () => {
   useEffect(() => {
     if (serverStatus === 1) {
       wrappedGet('active', setActivePrompt)
-      wrappedGet('category/current', (promptInfoArray) => {
-        setCurrentWords(promptInfoArray.map(x => x.prompt))
-      })
-      wrappedGet('category/past', (promptInfoArray) => {
-        setPastWords(promptInfoArray.map(x => x.prompt))
-      })
-      wrappedGet('category/pending', (promptInfoArray) => {
-        setPendingWords(promptInfoArray.map(x => x.prompt))
-      })
+      updateWordList('current', setCurrentWords)
+      updateWordList('past', setPastWords)
+      updateWordList('pending', setPendingWords)
     }
   }, [serverStatus])
 
+  const updateWordList = (category, setWordList) => {
+    wrappedGet(`category/${category}`, (promptInfoArray) => {
+      setWordList(promptInfoArray.map(x => x.prompt))
+    })
+  }
+
   const submitPrompt = (prompt) => {
     wrappedPost('suggest', {prompt}, (response) => {
-      wrappedGet('category/pending', setPendingWords)
+      updateWordList('pending', setPendingWords)
     })
   }
 
