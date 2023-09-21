@@ -27,11 +27,12 @@
 #club-link {
   flex: 0;
   border-radius: 50%;
+  border-width: max(1px, 0.1rem);
 
-  box-shadow: 0 0 1rem var(--accent-col);
+  box-shadow: 0 0 4px var(--accent-col);
 }
 #club-link:hover, #club-link:focus {
-  box-shadow: 0 0 2rem var(--main-col);
+  box-shadow: 0 0 8px var(--main-col);
 }
 
 
