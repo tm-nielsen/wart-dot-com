@@ -35,7 +35,7 @@ const SuggestionBox = ({onSubmit, validatePrompt}) => {
       <label htmlFor='suggestion-field' id='suggestion-label'>
         Suggest a Prompt:
       </label>
-      <input id='suggestion-field' className='shadow'
+      <input id='suggestion-field' className='shadow' maxLength={50}
         placeholder="enter prompt" value={suggestion} onChange={handleChange}/>
     </form>
     {error? <p className='message'>Error: {error}</p>: <></>}
