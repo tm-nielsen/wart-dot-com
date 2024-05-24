@@ -1,4 +1,4 @@
-const serverUrl = 'https://wartwords.ca'
+const serverUrl = import.meta.env.VITE_BACKEND_PATH
 
 export const wrappedGet = async(address, handleResponse) => {
   await wrappedFetch(address, handleResponse)
