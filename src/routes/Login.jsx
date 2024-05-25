@@ -34,6 +34,9 @@ const Login = () => {
           <input type='password' id='adminPassword' name='password' autoComplete='current-password'
             className='text-field shadow' placeholder='enter password'
             value={password} onChange={handleChange}/>
+          <button type='submit'>
+            Log In
+          </button>
         </form>
         <h1 className='login-error-display'>{showWrong? 'WRONG': ''}</h1>
       </ServerStatusWrapper>
