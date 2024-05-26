@@ -9,13 +9,14 @@ import ServerResponseDisplay from '../../components/admin/ServerResponseDisplay'
 const EditPage = () => {
   const [prompt, setPrompt] = useState('')
   const [category, setCategory] = useState('')
+  const [selectionDate, setSelectionDate] = useState('')
   const [serverResponse, setServerResponse] = useState('')
   const {password} = useAuthContext()
 
   const insertPrompt = () => {
-    wrappedPost('insert', {password, prompt, category}, setServerResponse)
+    wrappedPost('insert', {password, prompt, category, selectionDate}, setServerResponse)
     setPrompt('')
-    setCategory('')
+    setSelectionDate('')
   }
 
   const removePrompt = () => {
@@ -36,7 +37,8 @@ const EditPage = () => {
     <>
       <h1>Edit Prompt Lists</h1>
       <h2>Target Prompt</h2>
-      <input type='text' id='target-prompt-field' className='text-field shadow input-margin' placeholder='enter prompt'
+      <input type='text' id='target-prompt-field'
+        className='text-field shadow input-margin' placeholder='enter prompt'
         value={prompt} onChange={handlePromptChange} />
 
       <h2>Category</h2>
@@ -49,17 +51,27 @@ const EditPage = () => {
         </CategoryRadioButton>
       </div>
 
+      {category == 'past'?<>
+        <h2>Selection Date</h2>
+        <input type="text" id="selection-date-field"
+            className='text-field shadow input-margin' placeholder='YYYY-MM-DD'
+            value={selectionDate} onChange={(event) => setSelectionDate(event.target.value)}>
+        </input>
+        <p>{new Date(selectionDate).toDateString()}</p>
+      </>:null}
+
+      <button className='edit-page-button' onClick={insertPrompt}
+          disabled={!prompt || !category || isNaN(new Date(selectionDate))}>
+        Insert/Update
+      </button>
       <div className="flex-row">
-        <button className='edit-page-button' onClick={insertPrompt} disabled={!prompt || !category}>
-          Insert
-        </button>
         <button className='edit-page-button' onClick={removePrompt} disabled={!prompt}>
           Remove
         </button>
+        <button className='edit-page-button' onClick={overrideActivePrompt} disabled={!prompt}>
+          Override Active
+        </button>
       </div>
-      <button className='edit-page-button' onClick={overrideActivePrompt} disabled={!prompt}>
-        Override Active
-      </button>
       <ServerResponseDisplay response={serverResponse} />
     </>
   )
